@@ -1,0 +1,29 @@
+{
+	"script": {
+		"main": "src/js/script.js",
+		"es5": "assets/js/script.js",
+		"es6": "assets/js/script-esm.js",
+		"deps": "src/js/dependencies/**/*.js",
+		"output": "assets/js/"
+	},
+	"style": {
+		"main": "src/scss/style.scss",
+		"src": "src/**/*.{scss,sass}",
+		"output": "assets/css/"
+	},
+	"markup": {
+		"templates": "**/*.html"
+	},
+	"server": {
+		"proxy": "http://ultra.local",
+		"host": "ultra.local"
+	},
+	"sftp": {
+		"host": "domain.com",
+		"user": "domain-deepspace",
+		"pass": "deepspacerobots",
+		"port": 22,
+		"src": [ "./**/*", "!node_modules/**/*", "!package-lock.json" ],
+		"remotePath": "/path/to/web/root/"
+	}
+}

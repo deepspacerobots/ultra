@@ -1,0 +1,79 @@
+%center-flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+%button-clean {
+	pointer-events: auto;
+	line-height: 1;
+	font-size: 1em;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	outline: none;
+	color: var(--color-text);
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	&:focus,
+	&:hover {
+		border: none;
+		outline: none;
+		background: none;
+	}
+}
+
+%absolute-fill {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+// Media Queries
+@mixin se-and-up {
+	@media (min-width: #{$breakpoint-iphoneSE}) {
+		@content;
+	}
+}
+
+@mixin tiny {
+	@media (max-width: #{$breakpoint-tiny}) {
+		@content;
+	}
+}
+
+@mixin sm-and-up {
+	@media (min-width: #{$breakpoint-sm}) {
+		@content;
+	}
+}
+
+@mixin md-and-up {
+	@media (min-width: #{$breakpoint-md}) {
+		@content;
+	}
+}
+
+@mixin lg-and-up {
+	@media (min-width: #{$breakpoint-lg}) {
+		@content;
+	}
+}
+
+@mixin xl-and-up {
+	@media (min-width: #{$breakpoint-xl}) {
+		@content;
+	}
+}
+
+@mixin dark-ui {
+	@media (prefers-color-scheme: dark) {
+		@content;
+	}
+}

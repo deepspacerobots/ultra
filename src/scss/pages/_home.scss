@@ -1,0 +1,95 @@
+.main {
+	border: 1px solid red;
+	height: 100vh;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.active-background {
+	@extend %absolute-fill;
+	background: var(--color-background);
+	filter: brightness(65%);
+	.background-image {
+		height: 50vh;
+		width: 100%;
+		background-image: var(--image-background);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.fade {
+		@extend %absolute-fill;
+		height: 50vh;
+		background: linear-gradient(rgba($color-ui-light, 0.5), var(--color-background));
+	}
+}
+
+.main-grid {
+	position: relative;
+	z-index: 2;
+	height: 100%;
+	display: grid;
+	grid-template-areas:
+		"header secondary"
+		"viewer secondary"
+		"main-links secondary";
+	grid-template-rows: 4em 1fr 8em;
+	grid-template-columns: 1fr 1fr;
+	width: 200vw;
+
+	@include md-and-up {
+		grid-template-areas:
+			"header header"
+			"sponsors sponsors"
+			"viewer chat"
+			"main-links chat";
+		grid-template-rows: 4em 4em 1fr 8em;
+		grid-template-columns: 1fr 18em 100vw;
+	}
+
+	> * {
+		border: 1px solid blue;
+	}
+	transition: transform 250ms ease-out;
+	&[data-active-view="chat"] {
+		transform: translateX(-100vw);
+		.chat {
+			opacity: 1;
+		}
+	}
+	&[data-active-view="sponsor"] {
+		transform: translateX(-100vw);
+		.sponsor {
+			opacity: 1;
+		}
+	}
+}
+.view-toggle {
+	@include md-and-up {
+		display: none;
+	}
+}
+.view-secondary {
+	transform: opacity 250ms ease-out;
+	opacity: 0;
+	grid-area: secondary;
+	@include md-and-up {
+		opacity: 1;
+	}
+}
+.app-header {
+	grid-area: header;
+}
+.viewer {
+	grid-area: viewer;
+}
+.sponsor-ribbon {
+	grid-area: sponsors;
+}
+.main-links {
+	grid-area: main-links;
+}
+.chat {
+	@include md-and-up {
+		grid-area: chat;
+	}
+}

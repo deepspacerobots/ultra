@@ -1,0 +1,54 @@
+{
+	"name": "Deepspace Gulp",
+	"version": "1.0.0",
+	"description": "A taskrunner for building websites.",
+	"main": "index.php",
+	"keywords": [
+		"scss",
+		"css",
+		"framework",
+		"design-system",
+		"html",
+		"front-end",
+		"buttons",
+		"colors",
+		"forms",
+		"grid",
+		"mixins",
+		"spacing",
+		"typography",
+		"deepspace"
+	],
+	"scripts": {
+		"gulp": "gulp",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Andrew Hale <hale.adh@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/core": "^7.9.0",
+		"@babel/preset-env": "^7.9.5",
+		"autoprefixer": "^9.7.6",
+		"browser-sync": "^2.26.10",
+		"gulp": "^4.0.2",
+		"gulp-babel": "^8.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-file": "^0.4.0",
+		"gulp-minify": "^3.1.0",
+		"gulp-postcss": "^8.0.0",
+		"gulp-rename": "^1.4.0",
+		"gulp-sass": "^4.0.2",
+		"gulp-sass-glob": "^1.1.0",
+		"gulp-sftp-up4": "^0.1.8",
+		"gulp-sourcemaps": "^2.6.5",
+		"rollup": "^2.7.1",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-stream": "^1.24.1",
+		"vinyl-buffer": "^1.0.1",
+		"vinyl-source-stream": "^2.0.0"
+	},
+	"homepage": "https://deepspacerobots.com",
+	"dependencies": {
+		"@glidejs/glide": "^3.4.1"
+	}
+}

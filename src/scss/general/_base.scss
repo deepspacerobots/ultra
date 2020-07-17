@@ -1,0 +1,106 @@
+@font-face {
+	font-family: system;
+	font-style: normal;
+	font-weight: 300;
+	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"),
+		local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+	padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+	list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+html,
+body {
+	height: 100%;
+}
+body {
+	font-family: "system";
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	background: $color-ui-light;
+	color: $color-ui-dark;
+	font-size: 18px;
+}
+img {
+	width: 100%;
+	height: auto;
+}
+
+h1 {
+	font-size: 3em;
+	&.dynamic-text {
+		font-size: calc(1.5em + 2vw);
+	}
+}
+
+h2 {
+	font-size: 2em;
+	&.dynamic-text {
+		font-size: calc(1.3em + 2vw);
+	}
+}
+
+h3 {
+	font-size: 1.5em;
+	&.dynamic-text {
+		font-size: calc(1em + 2vw);
+	}
+}
+
+h4 {
+	font-size: 1.1em;
+	&.dynamic-text {
+		font-size: calc(0.8em + 2vw);
+	}
+}
