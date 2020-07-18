@@ -20,15 +20,12 @@ if (document.querySelector('.quotes-slider')) {
 		container: '.quotes-slider',
 		items: 1,
 		mode: 'carousel',
-
 		nav: false,
-
 		speed: 400,
 		items: 1,
 		controls: true,
 		controlsText: controlArrows,
 		controlsPosition: 'bottom',
-
 		swipeAngle: 15,
 		loop: true
 	});
