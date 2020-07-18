@@ -3,6 +3,11 @@
 	color: $color-ui-light;
 	text-align: center;
 	@extend %light-link;
+	position: relative;
+	overflow: hidden;
+	h1 {
+		font-weight: ;
+	}
 }
 
 .caret {
@@ -11,4 +16,15 @@
 	fill: none;
 	stroke: currentColor;
 	stroke-width: .25em;
+}
+
+.hero-background {
+	@extend %absolute-fill;
+	opacity: .5;
+	filter: brightness(150%);
+	mix-blend-mode: multiply;
+}
+.hero-content {
+	position: relative;
+	z-index: 1;
 }
