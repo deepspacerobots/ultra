@@ -1,0 +1,20 @@
+.drizly {
+    background: $color-brand-red;
+    padding:$space-lg;
+    img {
+        width:calc(100px + 10vw);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: $space-md;
+    }
+    h2 {
+        color:white;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    p {
+        text-align: center;
+        color:#fff;
+    }
+}
