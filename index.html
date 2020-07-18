@@ -299,13 +299,13 @@
                 <h2>Send Your Cheers</h2>
                 <form name="send-your-cheers">
                     <label for="first_name">First Name</label>
-                    <input placeholder="First Name" name="first_name" id="first_name" type="text" />
+                    <input placeholder="First Name" name="first_name" id="first_name" type="text" required maxLength="50"/>
                     <label for="last_name">Last Name</label>
-                    <input placeholder="Last Name" name="last_name" id="last_name" type="text" />
+                    <input placeholder="Last Name" name="last_name" id="last_name" type="text" required maxLength="50"/>
                     <label for="instagram_handle">Instagram Handler</label>
-                    <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" />
+                    <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" required maxLength="50"/>
                     <label for="your_message">Your Message</label>
-                    <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message"></textarea>
+                    <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message" required maxLength="200"></textarea>
                     <button>Submit</button>
                 </form>
                 <a href="#" rel="noreferrer">Legal FPO</a>
