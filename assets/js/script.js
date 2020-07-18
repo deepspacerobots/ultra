@@ -5001,20 +5001,17 @@ if (document.getElementById('challenge')) {
 }
 
 document.querySelector('.age-checker div.check').addEventListener("click", function (e) {
-  var month = parseInt(document.querySelector('.age-checker input#mm').value) - 1;
+  var month = parseInt(document.querySelector('.age-checker input#mm').value);
   var day = parseInt(document.querySelector('.age-checker input#dd').value);
   var year = parseInt(document.querySelector('.age-checker input#yyyy').value);
   document.querySelector(".error.fill-all-fields").classList.remove("visible");
   document.querySelector(".error.not-old-enough").classList.remove("visible");
-
-  if (month == 1) {
-    month = 0;
-  }
-
   var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
 
   if (month && year && day) {
-    console.log('yes');
+    if (month == 1) {
+      month = 0;
+    }
 
     if (user_age < 21) {
       cookies.set("authorized", false);
