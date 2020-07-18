@@ -4,11 +4,41 @@ const cookies = new CookieJar();
 import Alert from './modules/alert';
 
 if (document.getElementById('challenge')) {
-	const challenge = new Alert('#challenge', cookies);
+	const challengeModal = new Alert('#challenge', cookies);
+	if(!cookies.get("authorized")){
+		challengeModal.open();
+	}
 }
-if (document.getElementById('cheers')) {
-	const cheers = new Alert('#cheers', cookies);
-}
+
+import AgeVerification from "./AgeVerification.js";
+
+document.querySelector('.age-checker div.check').addEventListener("click", (e) => {
+	var month = parseInt(document.querySelector('.age-checker input#mm').value) - 1;
+	var day = parseInt(document.querySelector('.age-checker input#dd').value);
+	var year = parseInt(document.querySelector('.age-checker input#yyyy').value);
+	document.querySelector(".error.fill-all-fields").classList.remove("visible");
+	document.querySelector(".error.not-old-enough").classList.remove("visible");
+	if(month == 1){
+		month = 0;
+	}
+
+	var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
+
+	if(month && year && day){
+		console.log('yes');
+		if(user_age < 21){
+			cookies.set("authorized", false);
+			document.querySelector(".error.not-old-enough").classList.add("visible");
+		} else {
+			cookies.set("authorized", true);
+			const challenge = new Alert('#challenge', cookies);
+			challenge.close();
+		}
+	} else {
+		document.querySelector(".error.fill-all-fields").classList.add("visible");
+	}
+
+});
 
 document.querySelector('.send-cheers button').addEventListener('click', () => {
 	const cheers = new Alert('#cheers', cookies);

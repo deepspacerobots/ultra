@@ -1740,6 +1740,46 @@ var Alert = /*#__PURE__*/function () {
   return Alert;
 }();
 
+var AgeVerification = function AgeVerification(start, end) {
+  // Copy date objects so don't modify originals
+  var s = new Date(+start);
+  var e = new Date(+end);
+  var timeDiff, years, months, days, hours, minutes, seconds; // Get estimate of year difference
+
+  years = e.getFullYear() - s.getFullYear(); // Add difference to start, if greater than end, remove one year
+  // Note start from restored start date as adding and subtracting years
+  // may not be symetric
+
+  s.setFullYear(s.getFullYear() + years);
+
+  if (s > e) {
+    --years;
+    s = new Date(+start);
+    s.setFullYear(s.getFullYear() + years);
+  } // Get estimate of months
+
+
+  months = e.getMonth() - s.getMonth();
+  months += months < 0 ? 12 : 0; // Add difference to start, adjust if greater
+
+  s.setMonth(s.getMonth() + months);
+
+  if (s > e) {
+    --months;
+    s = new Date(+start);
+    s.setFullYear(s.getFullYear() + years);
+    s.setMonth(s.getMonth() + months);
+  } // Get remaining time difference, round to next full second
+
+
+  timeDiff = (e - s + 999) / 1e3 | 0;
+  days = timeDiff / 8.64e4 | 0;
+  hours = timeDiff % 8.64e4 / 3.6e3 | 0;
+  minutes = timeDiff % 3.6e3 / 6e1 | 0;
+  seconds = timeDiff % 6e1;
+  return [years, months, days, hours, minutes, seconds];
+};
+
 var UltraAnimate = /*#__PURE__*/function () {
   function UltraAnimate(element) {
     _classCallCheck(this, UltraAnimate);
@@ -4953,13 +4993,41 @@ var tns = function(options) {
 
 var cookies = new CookieJar();
 if (document.getElementById('challenge')) {
-  var challenge = new Alert('#challenge', cookies);
+  var challengeModal = new Alert('#challenge', cookies);
+
+  if (!cookies.get("authorized")) {
+    challengeModal.open();
+  }
 }
 
-if (document.getElementById('cheers')) {
-  var cheers = new Alert('#cheers', cookies);
-}
+document.querySelector('.age-checker div.check').addEventListener("click", function (e) {
+  var month = parseInt(document.querySelector('.age-checker input#mm').value) - 1;
+  var day = parseInt(document.querySelector('.age-checker input#dd').value);
+  var year = parseInt(document.querySelector('.age-checker input#yyyy').value);
+  document.querySelector(".error.fill-all-fields").classList.remove("visible");
+  document.querySelector(".error.not-old-enough").classList.remove("visible");
 
+  if (month == 1) {
+    month = 0;
+  }
+
+  var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
+
+  if (month && year && day) {
+    console.log('yes');
+
+    if (user_age < 21) {
+      cookies.set("authorized", false);
+      document.querySelector(".error.not-old-enough").classList.add("visible");
+    } else {
+      cookies.set("authorized", true);
+      var challenge = new Alert('#challenge', cookies);
+      challenge.close();
+    }
+  } else {
+    document.querySelector(".error.fill-all-fields").classList.add("visible");
+  }
+});
 document.querySelector('.send-cheers button').addEventListener('click', function () {
   var cheers = new Alert('#cheers', cookies);
   cheers.open();
