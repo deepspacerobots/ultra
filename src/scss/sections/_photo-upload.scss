@@ -42,6 +42,12 @@
 	}
 }
 .photo-steps {
+	a {
+		display: block;
+		@include sm-and-up {
+			display: inline-block;
+		}
+	}
 	@include sm-and-up {
 		padding-left: $space-md;
 		border-left: $border-width solid rgba($color-ui-light, .5);
