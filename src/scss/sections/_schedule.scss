@@ -29,6 +29,7 @@
         li {
             display: grid;
             grid-template-columns:3fr 1fr;
+            border-radius:5px;
             background: white;
             margin-bottom: $space-sm;
             border:calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
@@ -39,15 +40,18 @@
                 .wrapper {
                     height:max-content;
                     width:100%;
-                    margin-left:$space-lg;
-                    position: relative;
+                    margin-left:$space-md;
+                    @include sm-and-up {
+                        margin-left:$space-lg;
+                    }
+
                     .game-number {
                         position: absolute;
-                        top:-10px;
-                        left:-$space-md;
+                        top:10px;
+                        left:10px;
                         color:$color-brand-red-dark;
                         font-weight: 800;
-                        font-size: calc(14px + 0.5vw);
+                        font-size: calc(16px + 0.5vw);
                     }
                     .team1, .team2 {
                         display: flex;
@@ -55,9 +59,12 @@
                         text-transform: uppercase;
                         font-weight: 800;
                         color:$color-brand-blue-dark;
-                        font-size: calc(20px + 0.5vw);
                         p {
                             margin-bottom: -15px;
+                            font-size: 18px;
+                            @include sm-and-up {
+                                font-size: calc(20px + 0.5vw);
+                            }
                         }
                         img {
                             width:calc(40px + 0.4vw);
@@ -68,16 +75,26 @@
             .date-and-time {
                 border-left: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
                 padding:$space-md 0;
+                @extend %center-flex;
                 .date, .time {
                     margin: 0;
                     text-align: center;
                     color:$color-brand-blue-dark;
+                    height: 25px;
+                    margin-bottom: 15px;
                 }
                 .date {
-                    font-size: 30px;
+                    font-size: 20px;
+                    @include md-and-up {
+                        font-size: 30px;
+                    }
                 }
                 .time {
-                    font-size: 20px;
+                    font-size: 14px;
+                    margin-bottom: 0;
+                    @include md-and-up {
+                        font-size: 20px;
+                    }
                 }
             }
         }   
