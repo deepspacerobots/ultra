@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Title</title>
+	<title>ULTRA Fan Sweeps | Fill The Arena</title>
 	<base href="/ultra/">
-	<meta name="description" content="Your description here">
+	<meta name="description" content="Basketball is coming back, but something is still missing. You. Let's change that!">
 
 	<!-- Reassure the broser that we are mobile-friendly -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,10 +13,10 @@
 
 	<!-- Meta Tags for Social Media Platforms -->
 	<meta property="og:url" content="https://domain.com">
-	<meta property="og:site_name" content="Title">
+	<meta property="og:site_name" content="ULTRA Fan Sweeps | Fill The Arena">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="description">
-	<meta property="og:description" content="description">
+	<meta property="og:title" content="ULTRA Fan Sweeps | Fill The Arena">
+	<meta property="og:description" content="Basketball is coming back, but something is still missing. You. Let's change that!">
     <meta property="og:image" content="/assets/img/og.png">
     
     <!-- Font Awesome -->
@@ -30,7 +30,6 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
-	<link rel="manifest" href="/assets/img/favicon/site.webmanifest">
 	<link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#0059a3">
 	<meta name="msapplication-TileColor" content="#0059a3">
 	<meta name="msapplication-config" content="/assets/img/favicon/browserconfig.xml">
@@ -46,9 +45,10 @@
 	<header class="header">
 		<div class="container">
 			<div class="brand-logos">
-				<img class="logo-michelob" src="/assets/img/logo-michelob.svg" alt="Michelob Ultra"/>
-				<img class="logo-mavs" src="/assets/img/teams/DAL.svg" alt="Michelob Ultra"/>
-			</div>
+                <img src="/assets/img/logo-michelob.svg" alt="Michelob Ultra" />
+                <div class="divider"></div>
+                <img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" />
+            </div>
 			<div class="ribbon-wrapper">
 				<svg class="ribbon" x="0px" y="0px" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
 					<polyline points="180,0 180,380 100,320 20,380 20,0 "/>
@@ -299,15 +299,17 @@
                 <h2>Send Your Cheers</h2>
                 <form name="send-your-cheers">
                     <label for="first_name">First Name</label>
-                    <input placeholder="First Name" name="first_name" id="first_name" type="text" />
+                    <input placeholder="First Name" name="first_name" id="first_name" type="text" required maxLength="50"/>
                     <label for="last_name">Last Name</label>
-                    <input placeholder="Last Name" name="last_name" id="last_name" type="text" />
+                    <input placeholder="Last Name" name="last_name" id="last_name" type="text" required maxLength="50"/>
                     <label for="instagram_handle">Instagram Handler</label>
-                    <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" />
+                    <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" required maxLength="50"/>
                     <label for="your_message">Your Message</label>
-                    <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message"></textarea>
+                    <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message" required maxLength="200"></textarea>
                     <button>Submit</button>
                 </form>
+				<p id="cheers-success" class="hidden">Got it, thanks for the shout-out!</p>
+				<p id="cheers-error" class="hidden">Looks like something went wrong. Refresh the page and try again.</p>
                 <a href="#" rel="noreferrer">Legal FPO</a>
             </div>
         </div>
@@ -336,19 +338,16 @@
     </main>
 
     <footer>
-        <div class="wrapper">
-            <div class="logos">
+        <div class="container">
+            <div class="brand-logos">
                 <img src="/assets/img/logo-michelob.svg" alt="Michelob Ultra" />
                 <div class="divider"></div>
                 <img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" />
             </div>
             <div class="copyrights">
-                <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra © Light Beer, St. Louis, MO</p>
-                <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra Amber © Light Beer, St. Louis, MO</p>
-                <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra © Lime Cactus With Natural Flavor, St.
-                    Louis, MO</p>
-                <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra © Pure Gold Light Beer, St. Louis, MO</p>
-                <p>You can find all of the ingredients for the entire Michelob Ultra family at <a target="_blank" href="https://www.tapintoyourbeer.com/" rel="noreferrer"></a>tapintoyourbeer.com</p>
+                <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra © Light Beer, St. Louis, MO, © 2020 Anheuser-Busch, Michelob Ultra Amber © Light Beer, St. Louis, MO, © 2020 Anheuser-Busch, Michelob Ultra © Lime Cactus With Natural Flavor, St.
+                    Louis, MO, © 2020 Anheuser-Busch, Michelob Ultra © Pure Gold Light Beer, St. Louis, MO</p>
+                <p>You can find all of the ingredients for the entire Michelob Ultra family at <a href="https://www.tapintoyourbeer.com/" target="_blank" rel="noreferrer">tapintoyourbeer.com</a></p>
             </div>
         </div>
     </footer>

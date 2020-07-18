@@ -5056,19 +5056,13 @@ var scriptURL = 'https://script.google.com/macros/s/AKfycbzNogh6rhcxKHGorzEaiTUM
 
 function cheersSuccess(form, response) {
   console.log('Success!', response);
-  var successElement = document.createElement('p');
-  var successMessage = document.createTextNode('Got it, thanks for the shout-out!');
-  successElement.appendChild(successMessage);
   form.style.display = 'none';
-  form.parentNode.insertBefore(successElement, form);
+  document.getElementById('cheers-success').classList.remove('hidden');
 }
 
 function cheersError(form, error) {
   console.error('Error!', error.message);
-  var errorElement = document.createElement('p');
-  var errorMessage = document.createTextNode('Looks like something went wrong. Refresh the page and try again.');
-  errorElement.appendChild(errorMessage);
-  form.parentNode.insertBefore(errorElement, form);
+  document.getElementById('cheers-error').classList.remove('hidden');
 }
 
 if (document.forms['send-your-cheers']) {
