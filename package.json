@@ -49,6 +49,6 @@
 	},
 	"homepage": "https://deepspacerobots.com",
 	"dependencies": {
-		"@glidejs/glide": "^3.4.1"
+		"tiny-slider": "^2.9.2"
 	}
 }
