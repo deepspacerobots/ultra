@@ -1,12 +1,27 @@
 .photo-upload {
-	font-weight: 700;
-	background: $color-brand-blue;
+	font-weight: 600;
+	background: $color-brand-blue-dark;
 	color: $color-ui-light;
 	@extend %light-link;
 	text-align: center;
 	.container {
 		max-width: 46em;
-		padding: $space-lg $space-md;
+		padding: calc(1em + 8vw) $space-md;
+	}
+	h2 {
+		margin: 0 0 .15em 0;
+		line-height: 1.1;
+		font-size: 2.2em;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: .1em;
+	}
+	h3 {
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		font-weight: 800;
+		letter-spacing: .4em;
+		margin: 0 0 2em 0;
 	}
 }
 .photo-how-to {
@@ -19,34 +34,43 @@
 	}
 }
 .sample-image {
+	display: none;
 	@include sm-and-up {
+		display: block;
 		max-width: 14em;
-		padding-left: $space-md;
+		padding-right: $space-md;
 	}
 }
-.photo-steps ol {
-	list-style: none;
-	counter-reset: my-awesome-counter;
-	margin: 0;
-	padding: 0;
-	li {
-		counter-increment: my-awesome-counter;
-		display: flex;
-		margin-bottom: $space-sm;
-		&::before {
-			text-align: center;
-			display: block;
-			flex-grow: 1;
-			flex-shrink: 0;
-			content: counter(my-awesome-counter);
-			width: 1.5em;
-			height: 1.5em;
-			border-radius: 2em;
-			border: .125em solid $color-brand-red;
-			font-size: 2rem;
-			font-weight: 600;
-			margin-right: $space-sm;
-			line-height: 1.9;
+.photo-steps {
+	@include sm-and-up {
+		padding-left: $space-md;
+		border-left: $border-width solid rgba($color-ui-light, .5);
+	}
+	ol {
+		list-style: none;
+		counter-reset: my-awesome-counter;
+		margin: 0;
+		padding: 0;
+
+		li {
+			counter-increment: my-awesome-counter;
+			display: flex;
+			margin-bottom: $space-md;
+			&::before {
+				text-align: center;
+				display: block;
+				flex-grow: 1;
+				flex-shrink: 0;
+				content: counter(my-awesome-counter);
+				width: 1.5em;
+				height: 1.5em;
+				border-radius: 2em;
+				border: .125em solid $color-brand-red;
+				font-size: 2rem;
+				font-weight: 600;
+				margin-right: $space-sm;
+				line-height: 1.9;
+			}
 		}
 	}
 }

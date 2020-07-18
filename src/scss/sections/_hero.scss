@@ -1,12 +1,12 @@
 .hero {
-	background: $color-brand-blue;
+	background: $color-brand-blue-dark;
 	color: $color-ui-light;
 	text-align: center;
 	@extend %light-link;
 	position: relative;
 	overflow: hidden;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 600;
 	h1 {
 		font-size: 1.2rem;
 		letter-spacing: .4em;
@@ -16,7 +16,7 @@
 		margin: 0 0 .75em 0;
 		line-height: 1.1;
 		font-size: 2.5em;
-		font-weight: 700;
+		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: .1em;
 	}
@@ -54,9 +54,7 @@
 
 .hero-background {
 	@extend %absolute-fill;
-	opacity: .5;
-	filter: brightness(150%);
-	mix-blend-mode: multiply;
+	opacity: .25;
 	img {
 		width: 100%;
 		height: 100%;

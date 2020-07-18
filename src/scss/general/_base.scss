@@ -31,7 +31,6 @@
 	font-weight: lighter;
 }
 
-
 /* Box sizing rules */
 *,
 *::before,
@@ -137,4 +136,8 @@ h4 {
 	width: 0;
 	opacity: 0;
 	overflow: hidden;
+}
+.small {
+	font-weight: 400;
+	font-size: 14px;
 }
