@@ -72,7 +72,8 @@ body {
 	color: $color-ui-dark;
 	font-size: 18px;
 }
-img {
+img,
+svg {
 	width: 100%;
 	height: auto;
 }
@@ -103,4 +104,11 @@ h4 {
 	&.dynamic-text {
 		font-size: calc(0.8em + 2vw);
 	}
+}
+.hidden {
+	position: absolute;
+	height: 0;
+	width: 0;
+	opacity: 0;
+	overflow: hidden;
 }
