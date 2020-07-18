@@ -1,3 +1,37 @@
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothamblack.woff2");
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothambold.woff2");
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothammedium.woff2");
+	font-weight: 600;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothambook.woff2");
+	font-weight: 400;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothamlight.woff2");
+	font-weight: 300;
+	font-weight: lighter;
+}
+
+
 /* Box sizing rules */
 *,
 *::before,
@@ -55,8 +89,7 @@ body {
 	height: 100%;
 }
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
-		sans-serif;
+	font-family: "gotham", sans-serif, Arial, Helvetica;
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;

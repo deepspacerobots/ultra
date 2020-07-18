@@ -1,46 +1,90 @@
 .schedule {
+    padding: $space-md 0;
+    padding-bottom: $space-lg;
+    background:linear-gradient(rgba(white,0.7), rgba(white, 0.7)), url("../../../assets/img/white-jersey.jpg");
+    background-position: center;
+    background-size:cover;
+    h2 {
+        font-weight: 800;
+        text-transform: uppercase;
+        text-align: center;
+        color:$color-brand-blue-dark;
+    }
+    img.mavs-logo {
+        width:calc(100px + 10vw);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
     ol {
         padding: $space-sm;
+        max-width:$interior-max-width;
+        margin-left: auto;
+        margin-right: auto;
+        @include lg-and-up {
+            display: grid;
+            grid-template-columns:repeat(2, 1fr);
+            grid-column-gap:$space-sm;
+        }
         li {
             display: grid;
             grid-template-columns:3fr 1fr;
             background: white;
             margin-bottom: $space-sm;
-            border:$border-width solid $color-brand-blue;
+            border:calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
             position: relative;
             .teams {
                 display: flex;
                 align-items: center;
-                .game-number {
-                    position: absolute;
-                    top:0;
-                    color:$color-brand-red-dark;
-                    font-weight: bold;
-                }
                 .wrapper {
                     height:max-content;
                     width:100%;
+                    margin-left:$space-lg;
+                    position: relative;
+                    .game-number {
+                        position: absolute;
+                        top:-10px;
+                        left:-$space-md;
+                        color:$color-brand-red-dark;
+                        font-weight: 800;
+                        font-size: calc(14px + 0.5vw);
+                    }
                     .team1, .team2 {
                         display: flex;
                         align-items: center;
                         text-transform: uppercase;
-                        font-weight: bold;
-                        color:$color-brand-blue;
+                        font-weight: 800;
+                        color:$color-brand-blue-dark;
+                        font-size: calc(20px + 0.5vw);
+                        p {
+                            margin-bottom: -15px;
+                        }
                         img {
-                            width:30px;
+                            width:calc(40px + 0.4vw);
                         }
                     }
                 }
             }
             .date-and-time {
-                border-left: $border-width solid $color-brand-blue;
+                border-left: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
+                padding:$space-md 0;
+                .date, .time {
+                    margin: 0;
+                    text-align: center;
+                    color:$color-brand-blue-dark;
+                }
                 .date {
-
+                    font-size: 30px;
                 }
                 .time {
-
+                    font-size: 20px;
                 }
             }
         }   
+    }
+    .disclaimer {
+        text-align: center;
+        color:$color-brand-blue-dark;
+        font-weight: 400;
     }
 }
