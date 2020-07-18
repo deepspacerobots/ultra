@@ -10,16 +10,6 @@ if (document.getElementById('cheers')) {
 	const cheers = new Alert('#cheers', cookies);
 }
 
-import UltraAnimate from "./UltraAnimate.js";
-
-window.onload = () => {
-    // variables
-    const ribbon = new UltraAnimate("header .ribbon-wrapper");
-
-    // calls
-    ribbon.delay(400).show();
-}
-
 import { tns } from '../../node_modules/tiny-slider/src/tiny-slider';
 if (document.querySelector('.quotes-slider')) {
 	const controlArrows = [

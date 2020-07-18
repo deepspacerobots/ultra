@@ -1739,41 +1739,6 @@ var Alert = /*#__PURE__*/function () {
   return Alert;
 }();
 
-var UltraAnimate = /*#__PURE__*/function () {
-  function UltraAnimate(element) {
-    _classCallCheck(this, UltraAnimate);
-
-    this.element = document.querySelector(element);
-    this.delay = this.delay.bind(this);
-    return this;
-  }
-
-  _createClass(UltraAnimate, [{
-    key: "show",
-    value: function show() {
-      var _this = this;
-
-      if (this.delay) {
-        setTimeout(function () {
-          _this.element.classList.add("visible");
-        }, this.delay);
-      } else {
-        this.element.classList.add("visible");
-      }
-
-      return this;
-    }
-  }, {
-    key: "delay",
-    value: function delay(_delay) {
-      this.delay = _delay;
-      return this;
-    }
-  }]);
-
-  return UltraAnimate;
-}();
-
 // Object.keys
 if (!Object.keys) {
   Object.keys = function(object) {
@@ -4958,13 +4923,6 @@ if (document.getElementById('challenge')) {
 if (document.getElementById('cheers')) {
   var cheers = new Alert('#cheers', cookies);
 }
-
-window.onload = function () {
-  // variables
-  var ribbon = new UltraAnimate("header .ribbon-wrapper"); // calls
-
-  ribbon.delay(400).show();
-};
 
 if (document.querySelector('.quotes-slider')) {
   var _tns;

@@ -60,31 +60,6 @@ class Alert {
 	}
 }
 
-class UltraAnimate {
-    constructor(element){
-        this.element = document.querySelector(element);
-        this.delay = this.delay.bind(this);
-        
-        return this;
-    }
-
-    show(){
-        if(this.delay) {
-           setTimeout(() => {
-            this.element.classList.add("visible");
-           }, this.delay);
-        } else {
-            this.element.classList.add("visible");
-        }
-        return this;
-    }
-
-    delay(delay){
-        this.delay = delay;
-        return this;
-    }
-}
-
 // Object.keys
 if (!Object.keys) {
   Object.keys = function(object) {
@@ -3264,14 +3239,6 @@ if (document.getElementById('challenge')) {
 if (document.getElementById('cheers')) {
 	const cheers = new Alert('#cheers', cookies);
 }
-
-window.onload = () => {
-    // variables
-    const ribbon = new UltraAnimate("header .ribbon-wrapper");
-
-    // calls
-    ribbon.delay(400).show();
-};
 
 if (document.querySelector('.quotes-slider')) {
 	const controlArrows = [
