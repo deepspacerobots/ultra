@@ -60,6 +60,31 @@ class Alert {
 	}
 }
 
+class UltraAnimate {
+    constructor(element){
+        this.element = document.querySelector(element);
+        this.delay = this.delay.bind(this);
+        
+        return this;
+    }
+
+    show(){
+        if(this.delay) {
+           setTimeout(() => {
+            this.element.classList.add("visible");
+           }, this.delay);
+        } else {
+            this.element.classList.add("visible");
+        }
+        return this;
+    }
+
+    delay(delay){
+        this.delay = delay;
+        return this;
+    }
+}
+
 // Object.keys
 if (!Object.keys) {
   Object.keys = function(object) {
@@ -3240,6 +3265,14 @@ if (document.getElementById('cheers')) {
 	const cheers = new Alert('#cheers', cookies);
 }
 
+window.onload = () => {
+	// variables
+	const ribbon = new UltraAnimate('header .ribbon-wrapper');
+
+	// calls
+	ribbon.delay(400).show();
+};
+
 if (document.querySelector('.quotes-slider')) {
 	const controlArrows = [
 		'<span class="hidden">Previous Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="35,2 13,24 35,46 " /></svg>',
@@ -3257,5 +3290,34 @@ if (document.querySelector('.quotes-slider')) {
 		controlsPosition: 'bottom',
 		swipeAngle: 15,
 		loop: true
+	});
+}
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzNogh6rhcxKHGorzEaiTUMUV6CkZdUwq402Sllt7hi84N4xNI/exec';
+
+function cheersSuccess(form, response) {
+	console.log('Success!', response);
+	const successElement = document.createElement('p');
+	const successMessage = document.createTextNode('Got it, thanks for the shout-out!');
+	successElement.appendChild(successMessage);
+	form.style.display = 'none';
+	form.parentNode.insertBefore(successElement, form);
+}
+function cheersError(form, error) {
+	console.error('Error!', error.message);
+
+	const errorElement = document.createElement('p');
+	const errorMessage = document.createTextNode('Looks like something went wrong. Refresh the page and try again.');
+	errorElement.appendChild(errorMessage);
+	form.parentNode.insertBefore(errorElement, form);
+}
+
+if (document.forms['send-your-cheers']) {
+	const form = document.forms['send-your-cheers'];
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+			.then((response) => cheersSuccess(form, response))
+			.catch((error) => cheersError(form, error));
 	});
 }
