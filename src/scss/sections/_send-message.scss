@@ -1,101 +1,107 @@
 #cheers {
-    z-index: 9;
-    opacity:1;
-    position:fixed;
-    top:0;
-    height: 100%;
-    width:100%;
-    background:rgba($color-brand-blue-dark, 0.7);
-    @extend %center-flex;
-    transition:all 0.2s ease-in;
-    .container {
-        background:white;
-        max-width: 550px;
-        width:100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding:$space-md;
-        padding-top: $space-lg;
-        @include md-and-up {
-            padding:$space-lg;
-            padding-bottom: $space-xl;
-        }
-        border-radius:20px;
-        position:relative;
-        text-align: center;
-        margin:$space-sm;
-        label {
-            text-align: left;
-            width: 100%;
-            color:$color-brand-blue-dark;
-            font-weight:600;
-            text-transform: uppercase;
-            font-size:14px;
-            display: block;
-            margin-top: $space-sm;
-            padding-bottom: 2px;
-        }
-        a {
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 14px;
-            color:$color-brand-blue-dark;
-            font-weight: 400;
-        }
-        h2 {
-            text-transform: uppercase;
-            color:$color-brand-blue-dark;
-            font-size: 34px;
-        }
-        .alert-close {
-            background: transparent;
-            color:$color-brand-blue-dark;
-            border:none;
-            padding:0;
-            position: absolute;
-            right:20px;
-            top:5px;
-            font-size:30px;
-            font-weight:300;
-            transition:all 0.2s ease-in;
-            &:hover {
-                color:lighten($color-brand-blue-dark, 30%);
-            }
-        }
-        form {
-            @include placeholder {
-                color:$color-brand-gray;
-                font-weight:400;
-                font-size: 14px;
-            }
-            input, textarea {
-                color:$color-brand-blue-dark;
-                font-weight:600;
-                font-size: 14px;
-            }
-            input, textarea, button {
-                display: block;
-                width:100%;
-                margin-bottom: 10px;
-                padding:$space-sm;
-                border:$border-width solid $color-brand-blue-dark;
-                border-radius:7px;
-            }
-            button {
-                padding:0;
-                line-height:0;
-                background: $color-brand-red;
-                border:none;
-                margin-top: $space-md;
-            }
-            textarea {
-                height:150px;
-            }
-        }
-    }
+	z-index: 9;
+	opacity: 1;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba($color-brand-blue-dark, 0.7);
+	@extend %center-flex;
+	transition: all 0.2s ease-in;
+	.container {
+		background: white;
+		max-width: 550px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		padding: $space-md;
+		padding-top: $space-lg;
+		@include md-and-up {
+			padding: $space-lg;
+			padding-bottom: $space-xl;
+		}
+		border-radius: 20px;
+		position: relative;
+		text-align: center;
+		margin: $space-sm;
+	}
+	label {
+		text-align: left;
+		width: 100%;
+		color: $color-brand-blue-dark;
+		font-weight: 600;
+		text-transform: uppercase;
+		font-size: 14px;
+		display: block;
+		margin-top: $space-sm;
+		padding-bottom: 2px;
+	}
+	a {
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 14px;
+		color: $color-brand-blue-dark;
+		font-weight: 400;
+	}
+	h2 {
+		text-transform: uppercase;
+		color: $color-brand-blue-dark;
+		font-size: 34px;
+	}
+
+	form {
+		@include placeholder {
+			color: $color-brand-gray;
+			font-weight: 400;
+			font-size: 14px;
+		}
+		input,
+		textarea {
+			color: $color-brand-blue-dark;
+			font-weight: 600;
+			font-size: 14px;
+		}
+		input,
+		textarea,
+		button {
+			display: block;
+			width: 100%;
+			margin-bottom: 10px;
+			padding: $space-sm;
+			border: $border-width solid $color-brand-blue-dark;
+			border-radius: 7px;
+		}
+		button {
+			padding: 0;
+			line-height: 0;
+			background: $color-brand-red;
+			border: none;
+			margin-top: $space-md;
+		}
+		textarea {
+			height: 150px;
+		}
+	}
 }
 
-#cheers[data-open="false"]{
-    z-index: -1;
-    opacity:0;
+#cheers[data-open="false"] {
+	z-index: -1;
+	opacity: 0;
+}
+
+.alert-close {
+	@extend %button-clean;
+	width: 2.5em;
+	position: absolute;
+	right: .75em;
+	top: .75em;
+	opacity: .75;
+	&:hover {
+		opacity: 1;
+	}
+	svg {
+		* {
+			fill: $color-brand-blue-dark;
+		}
+	}
 }
