@@ -35,6 +35,23 @@
 	left: 0;
 }
 
+%light-link {
+	a {
+		color: $color-ui-light;
+		opacity: .8;
+		&:hover,
+		&:focus {
+			color: #fff;
+			opacity: 1;
+		}
+	}
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 60em;
+}
+
 // Media Queries
 @mixin se-and-up {
 	@media (min-width: #{$breakpoint-iphoneSE}) {

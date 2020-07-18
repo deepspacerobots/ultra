@@ -1,0 +1,60 @@
+.header {
+	*[class^="container"] {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.ribbon-wrapper {
+	flex-shrink: 0;
+	width: 3em;
+	height: 4em;
+	overflow: visible;
+	@include sm-and-up {
+		width: 5em;
+		height: 6em;
+	}
+}
+.ribbon {
+	fill: none;
+	polyline {
+		fill: none;
+		stroke: $color-brand-red;
+		stroke-width: 20;
+		stroke-miterlimit: 10;
+	}
+}
+
+.social-menu {
+	display: flex;
+	color: $color-brand-red;
+	a {
+		display: block;
+		width: 2.5em;
+		padding: .5em;
+	}
+	svg {
+		> * {
+			fill: $color-brand-red;
+		}
+	}
+}
+
+.brand-logos {
+	display: flex;
+	align-items: center;
+	*[class^="logo"] {
+		padding: .25em;
+		height: 3em;
+		width: auto;
+		@include sm-and-up {
+			height: 4.5em;
+		}
+	}
+	.logo-michelob {
+		border-right: $border-width solid rgba($color-brand-blue, .5);
+	}
+	.logo-mavs {
+	}
+}
