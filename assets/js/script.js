@@ -1739,6 +1739,41 @@ var Alert = /*#__PURE__*/function () {
   return Alert;
 }();
 
+var UltraAnimate = /*#__PURE__*/function () {
+  function UltraAnimate(element) {
+    _classCallCheck(this, UltraAnimate);
+
+    this.element = document.querySelector(element);
+    this.delay = this.delay.bind(this);
+    return this;
+  }
+
+  _createClass(UltraAnimate, [{
+    key: "show",
+    value: function show() {
+      var _this = this;
+
+      if (this.delay) {
+        setTimeout(function () {
+          _this.element.classList.add("visible");
+        }, this.delay);
+      } else {
+        this.element.classList.add("visible");
+      }
+
+      return this;
+    }
+  }, {
+    key: "delay",
+    value: function delay(_delay) {
+      this.delay = _delay;
+      return this;
+    }
+  }]);
+
+  return UltraAnimate;
+}();
+
 // Object.keys
 if (!Object.keys) {
   Object.keys = function(object) {
@@ -4924,17 +4959,22 @@ if (document.getElementById('cheers')) {
   var cheers = new Alert('#cheers', cookies);
 }
 
+window.onload = function () {
+  // variables
+  var ribbon = new UltraAnimate(".ribbon-wrapper"); // calls
+
+  ribbon.delay(400).show();
+};
+
 if (document.querySelector('.quotes-slider')) {
   var _tns;
 
-  var controlArrows = ['<', '>'];
+  var controlArrows = ['<span class="hidden">Previous Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="35,2 13,24 35,46 " /></svg>', '<span class="hidden">Next Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="13,46 35,24 13,2 "/></svg>'];
   var quotes = tns((_tns = {
     container: '.quotes-slider',
     items: 1,
-    smode: 'carousel',
-    center: false,
+    mode: 'carousel',
     nav: false,
-    controls: true,
     speed: 400
-  }, _defineProperty(_tns, "items", 1), _defineProperty(_tns, "controlsText", controlArrows), _defineProperty(_tns, "autoHeight", true), _defineProperty(_tns, "swipeAngle", 15), _defineProperty(_tns, "loop", true), _tns));
+  }, _defineProperty(_tns, "items", 1), _defineProperty(_tns, "controls", true), _defineProperty(_tns, "controlsText", controlArrows), _defineProperty(_tns, "controlsPosition", 'bottom'), _defineProperty(_tns, "swipeAngle", 15), _defineProperty(_tns, "loop", true), _tns));
 }
