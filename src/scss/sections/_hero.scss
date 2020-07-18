@@ -1,4 +1,14 @@
 .hero {
 	background: $color-brand-blue;
 	color: $color-ui-light;
+	text-align: center;
+	@extend %light-link;
+}
+
+.caret {
+	width: 2em;
+	height: 2em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: .25em;
 }
