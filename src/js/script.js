@@ -10,6 +10,11 @@ if (document.getElementById('cheers')) {
 	const cheers = new Alert('#cheers', cookies);
 }
 
+document.querySelector('.send-cheers button').addEventListener('click', () => {
+	const cheers = new Alert('#cheers', cookies);
+	cheers.open()
+});
+
 import UltraAnimate from "./UltraAnimate.js";
 
 window.onload = () => {

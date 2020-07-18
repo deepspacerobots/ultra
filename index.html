@@ -17,7 +17,10 @@
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="description">
 	<meta property="og:description" content="description">
-	<meta property="og:image" content="/assets/img/og.png">
+    <meta property="og:image" content="/assets/img/og.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-VhBcF/php0Z/P5ZxlxaEx1GwqTQVIBu4G4giRWxTKOCjTxsPFETUDdVL5B6vYvOt" crossorigin="anonymous">
 
 	<!-- Prefetch urls -->
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -35,7 +38,7 @@
 	<link rel="manifest" href="/manifest.json">
 
 	<!-- Load the site style -->
-	<link href="/ultra/assets/css/style-min.css" rel="stylesheet">
+	<link href="/assets/css/style-min.css" rel="stylesheet">
 
 	
 </head>
@@ -155,10 +158,10 @@
 
 		<section class="two-up">
             <div class="wrapper">
-                <div class="content">
+                <div class="content send-cheers">
                     <h2>Send Your Cheers</h2>
                     <p>Hype up your team from home with a toast to the Dallas Mavericks.</p>
-                    <a href="#" class="button button-white" target="_blank" rel="noreferrer">Send Message</a>
+                    <button class="button button-white">Send Message</button>
                 </div>
                 <div class="divider"></div>
                 <div class="content">
@@ -289,6 +292,25 @@
             </ol>
             <p class="disclaimer">All times are in Central Standard Time</p>
         </section>
+
+        <div id="cheers" data-open="false">
+            <div class="container">
+                <button class="alert-close"><i class="fal fa-times"></i></button>
+                <h2>Send Your Cheers</h2>
+                <form name="send-your-cheers">
+                    <label for="first_name">First Name</label>
+                    <input placeholder="First Name" name="first_name" id="first_name" type="text" />
+                    <label for="last_name">Last Name</label>
+                    <input placeholder="Last Name" name="last_name" id="last_name" type="text" />
+                    <label for="instagram_handle">Instagram Handler</label>
+                    <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" />
+                    <label for="your_message">Your Message</label>
+                    <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message"></textarea>
+                    <button>Submit</button>
+                </form>
+                <a href="#" rel="noreferrer">Legal FPO</a>
+            </div>
+        </div>
     </main>
 
     <footer>

@@ -35,6 +35,7 @@ class Alert {
 	}
 
 	open() {
+		console.log('called');
 		this.alert.dataset.open = true;
 	}
 
@@ -3264,6 +3265,11 @@ if (document.getElementById('challenge')) {
 if (document.getElementById('cheers')) {
 	const cheers = new Alert('#cheers', cookies);
 }
+
+document.querySelector('.send-cheers button').addEventListener('click', () => {
+	const cheers = new Alert('#cheers', cookies);
+	cheers.open();
+});
 
 window.onload = () => {
     // variables

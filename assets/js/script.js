@@ -1707,6 +1707,7 @@ var Alert = /*#__PURE__*/function () {
   _createClass(Alert, [{
     key: "open",
     value: function open() {
+      console.log('called');
       this.alert.dataset.open = true;
     }
   }, {
@@ -4959,6 +4960,10 @@ if (document.getElementById('cheers')) {
   var cheers = new Alert('#cheers', cookies);
 }
 
+document.querySelector('.send-cheers button').addEventListener('click', function () {
+  var cheers = new Alert('#cheers', cookies);
+  cheers.open();
+});
 window.onload = function () {
   // variables
   var ribbon = new UltraAnimate("header .ribbon-wrapper"); // calls
