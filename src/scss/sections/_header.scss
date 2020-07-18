@@ -5,8 +5,20 @@
 		align-items: center;
 	}
 	.ribbon-wrapper {
-		transition:transform 0.2s ease-in;
-		transform:translateY(-10em);
+		transition: transform 0.2s ease-in;
+		transform: translateY(-10em);
+	}
+	.brand-logos {
+		width: 50%;
+
+		*[class^="logo"] {
+			padding: .25em;
+			height: 3em;
+			width: auto;
+			@include sm-and-up {
+				height: 4.5em;
+			}
+		}
 	}
 }
 
@@ -18,7 +30,7 @@
 	height: 4em;
 	overflow: visible;
 	&.visible {
-		transform:none;
+		transform: none;
 	}
 	@include sm-and-up {
 		width: 5em;
@@ -53,20 +65,4 @@
 	width: 50%;
 	display: flex;
 	justify-content: flex-end;
-}
-.brand-logos {
-	width: 50%;
-	display: flex;
-	align-items: center;
-	*[class^="logo"] {
-		padding: .25em;
-		height: 3em;
-		width: auto;
-		@include sm-and-up {
-			height: 4.5em;
-		}
-	}
-	.logo-michelob {
-		border-right: $border-width solid rgba($color-brand-blue, .5);
-	}
 }
