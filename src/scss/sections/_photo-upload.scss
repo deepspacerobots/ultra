@@ -1,4 +1,52 @@
 .photo-upload {
+	font-weight: 700;
 	background: $color-brand-blue;
 	color: $color-ui-light;
+	@extend %light-link;
+	text-align: center;
+	.container {
+		max-width: 46em;
+		padding: $space-lg $space-md;
+	}
+}
+.photo-how-to {
+	font-weight: 400;
+	text-align: left;
+	margin: $space-lg 0;
+	display: flex;
+	@include sm-and-up {
+		flex-direction: row;
+	}
+}
+.sample-image {
+	@include sm-and-up {
+		max-width: 14em;
+		padding-left: $space-md;
+	}
+}
+.photo-steps ol {
+	list-style: none;
+	counter-reset: my-awesome-counter;
+	margin: 0;
+	padding: 0;
+	li {
+		counter-increment: my-awesome-counter;
+		display: flex;
+		margin-bottom: $space-sm;
+		&::before {
+			text-align: center;
+			display: block;
+			flex-grow: 1;
+			flex-shrink: 0;
+			content: counter(my-awesome-counter);
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 2em;
+			border: .125em solid $color-brand-red;
+			font-size: 2rem;
+			font-weight: 600;
+			margin-right: $space-sm;
+			line-height: 1.2;
+		}
+	}
 }
