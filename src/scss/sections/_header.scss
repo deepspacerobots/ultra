@@ -7,6 +7,8 @@
 }
 
 .ribbon-wrapper {
+	position: relative;
+	z-index: 3;
 	flex-shrink: 0;
 	width: 3em;
 	height: 4em;
@@ -40,8 +42,13 @@
 		}
 	}
 }
-
+.social-menu {
+	width: 50%;
+	display: flex;
+	justify-content: flex-end;
+}
 .brand-logos {
+	width: 50%;
 	display: flex;
 	align-items: center;
 	*[class^="logo"] {
