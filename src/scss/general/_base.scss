@@ -1,9 +1,34 @@
 @font-face {
-	font-family: system;
-	font-style: normal;
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothamblack.woff2");
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothambold.woff2");
+	font-weight: 800;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothammedium.woff2");
+	font-weight: 600;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothambook.woff2");
+	font-weight: 400;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "gotham";
+	src: url("../../../assets/fonts/gothamlight.woff2");
 	font-weight: 300;
-	src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"),
-		local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+	font-weight: lighter;
 }
 
 /* Box sizing rules */
@@ -63,7 +88,7 @@ body {
 	height: 100%;
 }
 body {
-	font-family: "system";
+	font-family: "gotham", sans-serif, Arial, Helvetica;
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
@@ -72,7 +97,8 @@ body {
 	color: $color-ui-dark;
 	font-size: 18px;
 }
-img {
+img,
+svg {
 	width: 100%;
 	height: auto;
 }
@@ -103,4 +129,15 @@ h4 {
 	&.dynamic-text {
 		font-size: calc(0.8em + 2vw);
 	}
+}
+.hidden {
+	position: absolute;
+	height: 0;
+	width: 0;
+	opacity: 0;
+	overflow: hidden;
+}
+.small {
+	font-weight: 400;
+	font-size: 14px;
 }
