@@ -1,20 +1,33 @@
 .drizly {
     background: $color-brand-red;
-    padding:$space-lg;
-    img {
-        width:calc(100px + 10vw);
+    padding:$space-lg 0;
+    text-align: center;
+    color:white;
+    .wrapper {
+        padding:0 2rem;
+        max-width:46em;
         margin-left: auto;
         margin-right: auto;
-        display: block;
-        margin-bottom: $space-md;
-    }
-    h2 {
-        color:white;
-        text-align: center;
-        text-transform: uppercase;
-    }
-    p {
-        text-align: center;
-        color:#fff;
+        img {
+            width:calc(100px + 10vw);
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-bottom: $space-md;
+        }
+        h2 {
+            text-transform: uppercase;
+        }
+        p {
+            margin: $space-md 0;
+            font-weight: 600;
+        }
+        a.button.button-white {
+            background: transparent;
+            color:white;
+            &:hover {
+                background: lighten($color-brand-red, 5%);
+            }
+        }
     }
 }
