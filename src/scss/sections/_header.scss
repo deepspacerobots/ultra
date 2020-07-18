@@ -10,13 +10,20 @@
 	}
 	.brand-logos {
 		width: 50%;
-
-		*[class^="logo"] {
-			padding: .25em;
+		img {
+			padding: 0;
 			height: 3em;
 			width: auto;
-			@include sm-and-up {
+		}
+		.divider {
+			height: 3em;
+		}
+		@include sm-and-up {
+			img {
 				height: 4.5em;
+			}
+			.divider {
+				height: 4em;
 			}
 		}
 	}
