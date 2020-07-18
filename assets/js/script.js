@@ -4966,7 +4966,7 @@ document.querySelector('.send-cheers button').addEventListener('click', function
 });
 window.onload = function () {
   // variables
-  var ribbon = new UltraAnimate("header .ribbon-wrapper"); // calls
+  var ribbon = new UltraAnimate('header .ribbon-wrapper'); // calls
 
   ribbon.delay(400).show();
 };
@@ -4982,4 +4982,38 @@ if (document.querySelector('.quotes-slider')) {
     nav: false,
     speed: 400
   }, _defineProperty(_tns, "items", 1), _defineProperty(_tns, "controls", true), _defineProperty(_tns, "controlsText", controlArrows), _defineProperty(_tns, "controlsPosition", 'bottom'), _defineProperty(_tns, "swipeAngle", 15), _defineProperty(_tns, "loop", true), _tns));
+}
+
+var scriptURL = 'https://script.google.com/macros/s/AKfycbzNogh6rhcxKHGorzEaiTUMUV6CkZdUwq402Sllt7hi84N4xNI/exec';
+
+function cheersSuccess(form, response) {
+  console.log('Success!', response);
+  var successElement = document.createElement('p');
+  var successMessage = document.createTextNode('Got it, thanks for the shout-out!');
+  successElement.appendChild(successMessage);
+  form.style.display = 'none';
+  form.parentNode.insertBefore(successElement, form);
+}
+
+function cheersError(form, error) {
+  console.error('Error!', error.message);
+  var errorElement = document.createElement('p');
+  var errorMessage = document.createTextNode('Looks like something went wrong. Refresh the page and try again.');
+  errorElement.appendChild(errorMessage);
+  form.parentNode.insertBefore(errorElement, form);
+}
+
+if (document.forms['send-your-cheers']) {
+  var form = document.forms['send-your-cheers'];
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form)
+    }).then(function (response) {
+      return cheersSuccess(form, response);
+    })["catch"](function (error) {
+      return cheersError(form, error);
+    });
+  });
 }
