@@ -4969,14 +4969,12 @@ window.onload = function () {
 if (document.querySelector('.quotes-slider')) {
   var _tns;
 
-  var controlArrows = ['<', '>'];
+  var controlArrows = ['<span class="hidden">Previous Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="35,2 13,24 35,46 " /></svg>', '<span class="hidden">Next Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="13,46 35,24 13,2 "/></svg>'];
   var quotes = tns((_tns = {
     container: '.quotes-slider',
     items: 1,
-    smode: 'carousel',
-    center: false,
+    mode: 'carousel',
     nav: false,
-    controls: true,
     speed: 400
-  }, _defineProperty(_tns, "items", 1), _defineProperty(_tns, "controlsText", controlArrows), _defineProperty(_tns, "autoHeight", true), _defineProperty(_tns, "swipeAngle", 15), _defineProperty(_tns, "loop", true), _tns));
+  }, _defineProperty(_tns, "items", 1), _defineProperty(_tns, "controls", true), _defineProperty(_tns, "controlsText", controlArrows), _defineProperty(_tns, "controlsPosition", 'bottom'), _defineProperty(_tns, "swipeAngle", 15), _defineProperty(_tns, "loop", true), _tns));
 }
