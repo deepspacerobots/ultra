@@ -1,0 +1,46 @@
+.schedule {
+    ol {
+        padding: $space-sm;
+        li {
+            display: grid;
+            grid-template-columns:3fr 1fr;
+            background: white;
+            margin-bottom: $space-sm;
+            border:$border-width solid $color-brand-blue;
+            position: relative;
+            .teams {
+                display: flex;
+                align-items: center;
+                .game-number {
+                    position: absolute;
+                    top:0;
+                    color:$color-brand-red-dark;
+                    font-weight: bold;
+                }
+                .wrapper {
+                    height:max-content;
+                    width:100%;
+                    .team1, .team2 {
+                        display: flex;
+                        align-items: center;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        color:$color-brand-blue;
+                        img {
+                            width:30px;
+                        }
+                    }
+                }
+            }
+            .date-and-time {
+                border-left: $border-width solid $color-brand-blue;
+                .date {
+
+                }
+                .time {
+
+                }
+            }
+        }   
+    }
+}
