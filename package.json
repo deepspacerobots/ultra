@@ -1,8 +1,12 @@
 {
-	"name": "Deepspace Gulp",
+	"name": "deepspace-gulp",
 	"version": "1.0.0",
 	"description": "A taskrunner for building websites.",
-	"main": "index.php",
+	"main": "index.html",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:deepspacerobots/ultra.git"
+	},
 	"keywords": [
 		"scss",
 		"css",
