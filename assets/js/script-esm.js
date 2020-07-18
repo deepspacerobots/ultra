@@ -3267,7 +3267,7 @@ if (document.getElementById('cheers')) {
 
 window.onload = () => {
     // variables
-    const ribbon = new UltraAnimate(".ribbon-wrapper");
+    const ribbon = new UltraAnimate("header .ribbon-wrapper");
 
     // calls
     ribbon.delay(400).show();

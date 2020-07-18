@@ -4,6 +4,10 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+	.ribbon-wrapper {
+		transition:transform 0.2s ease-in;
+		transform:translateY(-10em);
+	}
 }
 
 .ribbon-wrapper {
@@ -13,8 +17,6 @@
 	width: 3em;
 	height: 4em;
 	overflow: visible;
-	transform:translateY(-10em);
-	transition:transform 0.2s ease-in;
 	&.visible {
 		transform:none;
 	}

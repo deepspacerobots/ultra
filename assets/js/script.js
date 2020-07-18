@@ -4961,7 +4961,7 @@ if (document.getElementById('cheers')) {
 
 window.onload = function () {
   // variables
-  var ribbon = new UltraAnimate(".ribbon-wrapper"); // calls
+  var ribbon = new UltraAnimate("header .ribbon-wrapper"); // calls
 
   ribbon.delay(400).show();
 };
