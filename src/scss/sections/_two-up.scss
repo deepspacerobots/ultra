@@ -51,7 +51,7 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            a {
+            a, button {
                 background:transparent;
                 color:white;
                 width:max-content;
@@ -59,6 +59,9 @@
                     background:lighten($color-brand-blue-dark, 5%);
                     color:white;
                 }
+            }
+            button {
+                line-height:0;
             }
         }
     }

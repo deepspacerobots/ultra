@@ -1707,6 +1707,7 @@ var Alert = /*#__PURE__*/function () {
   _createClass(Alert, [{
     key: "open",
     value: function open() {
+      console.log('called');
       this.alert.dataset.open = true;
     }
   }, {

@@ -9,6 +9,7 @@ export default class Alert {
 	}
 
 	open() {
+		console.log('called');
 		this.alert.dataset.open = true;
 	}
 
