@@ -52,6 +52,7 @@
 		padding-left: $space-md;
 		border-left: $border-width solid rgba($color-ui-light, .5);
 	}
+
 	ol {
 		list-style: none;
 		counter-reset: my-awesome-counter;
@@ -59,23 +60,24 @@
 		padding: 0;
 
 		li {
+			font-family: Arial, Helvetica;
+			font-weight: 600;
 			counter-increment: my-awesome-counter;
 			display: flex;
 			margin-bottom: $space-md;
 			&::before {
 				text-align: center;
 				display: block;
-				flex-grow: 1;
-				flex-shrink: 0;
 				content: counter(my-awesome-counter);
+				min-width: 1.5em;
 				width: 1.5em;
 				height: 1.5em;
 				border-radius: 2em;
 				border: .125em solid $color-brand-red;
 				font-size: 2rem;
-				font-weight: 600;
 				margin-right: $space-sm;
-				line-height: 1.9;
+				padding: .15em;
+				line-height: 1;
 			}
 		}
 	}
