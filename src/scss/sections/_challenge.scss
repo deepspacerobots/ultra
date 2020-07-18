@@ -11,8 +11,12 @@
     @extend %center-flex;
     transition:all 0.2s ease-in;
     .header {
-    margin-bottom: $space-md;
+        margin-bottom: $space-md;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
         .brand-logos {
+            width:100%;
             img {
                 height:25vw;
                 @include md-and-up {
