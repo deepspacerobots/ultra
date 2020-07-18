@@ -3,6 +3,9 @@
 @import "./general/functions";
 @import "./general/base";
 
+// Dependencies
+@import "../../node_modules/tiny-slider/src/tiny-slider.scss";
+
 // Pages
 @import "./pages/Home";
 
