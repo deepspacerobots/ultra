@@ -21,7 +21,9 @@
     
     
 	<!-- Prefetch urls -->
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="preload" as="font" href="/assets/fonts/gothammedium.woff2" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload" as="font" href="/assets/fonts/gothambook.woff2" type="font/woff2" crossorigin="anonymous">
+	<link rel="preload" as="font" href="/assets/fonts/gothambold.woff2" type="font/woff2" crossorigin="anonymous">
 
 	<!-- Load the icons and theme colors -->
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -36,6 +38,7 @@
 
 	<!-- Load the site style -->
 	<link href="/assets/css/style-min.css" rel="stylesheet">
+
 
 	
 </head>
@@ -93,7 +96,7 @@
 
 		<section id="photo" class="photo-upload">
 			<div class="container">
-				<img class="line-icon" src="/assets/img/icon-hoop.svg" alt="Hoop Icon" />
+				<img class="line-icon" src="/assets/img/icon-hoop.svg" loading="lazy" alt="Hoop Icon" />
 				<h2>Ultra Fan Sweeps</h2>
 				<h3>Fill the Arena</h3>
 				<p>While basketball is coming back, something is still missing. You. Follow the steps below to enter for a chance to have your photo turned into a cardboard cutout that will fill a seat at the American Airlines Center once again.</p>
@@ -103,6 +106,7 @@
 							srcset="/assets/img/sample-xs.jpg 200w,
 							/assets/img/sample-sm.jpg 400w,
 							/assets/img/sample-md.jpg 600w,"
+							loading="lazy"
 							alt="Sample Image Waist-Up" />
 					</div>
 					<div class="photo-steps">
@@ -151,21 +155,22 @@
 					srcset="/assets/img/bottle-xs.png 200w,
 						/assets/img/bottle-sm.png 400w,
 						/assets/img/bottle-md.png 600w,"
-						alt="Michelob Ultra Bottle" />
+						alt="Michelob Ultra Bottle" 
+						loading="lazy" />
 			</div>
 		</section>
 
 		<section class="two-up">
             <div class="wrapper">
                 <div class="content send-cheers">
-					<img class="line-icon" src="/assets/img/icon-bottles.svg" alt="Bottles Icon" />
+					<img class="line-icon" src="/assets/img/icon-bottles.svg" loading="lazy" alt="Bottles Icon" />
                     <h2>Send Your Cheers</h2>
                     <p>Hype up your team from home and share some words of encouragement to let the Mavs know how excited you are for the season to start. Your message could end up on a billboard!</p>
                     <button class="button button-white">Send Message</button>
                 </div>
                 <div class="divider"></div>
                 <div class="content">
-					<img class="line-icon" src="/assets/img/icon-computer.svg" alt="Computer Icon" />
+					<img class="line-icon" src="/assets/img/icon-computer.svg" loading="lazy" alt="Computer Icon" />
                     <h2>Zoom Backgrounds</h2>
 
                     <p>Take your love of Michelob ULTRA and the Dallas Mavs to the next level. Download a branded zoom background and have the best box at the virtual watch party.</p>
@@ -190,111 +195,112 @@
                         /assets/img/white-jersey-sm.jpg 600w,
                         /assets/img/white-jersey-md.jpg 800w,
                         /assets/img/white-jersey-lg.jpg 1200w,"
-                        alt="jersey background" />
+                        loading="lazy"
+						alt="jersey background" />
             <h2>Dallas Mavericks Schedule</h2>
             <ol>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">01</p>
-                            <div class="team1"><img src="/assets/img/teams/HOU.svg" alt="Houston Rockets" /> <p>Rockets</p></div>
-                            <div class="team2"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team1"><img src="/assets/img/teams/HOU.svg" loading="lazy" alt="Houston Rockets" /> <p>Rockets</p></div>
+                            <div class="team2"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">7/31</h5>
-                        <h6 class="time">8:00 PM</h6>
+                        <div class="date">7/31</div>
+                        <div class="time">8:00 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">02</p>
-                            <div class="team1"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
-                            <div class="team2"><img src="/assets/img/teams/PHX.svg" alt="Phoenix Sunds" /> <p>Suns</p></div></div>
+                            <div class="team1"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team2"><img src="/assets/img/teams/PHX.svg" loading="lazy" alt="Phoenix Sunds" /> <p>Suns</p></div></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/2</h5>
-                        <h6 class="time">8:00 PM</h6>
+                        <div class="date">8/2</div>
+                        <div class="time">8:00 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">03</p>
-                            <div class="team1"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
-                            <div class="team2"><img src="/assets/img/teams/SAC.svg" alt="Sacramento Kings" /> <p>Kings</p></div></div>
+                            <div class="team1"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team2"><img src="/assets/img/teams/SAC.svg" loading="lazy" alt="Sacramento Kings" /> <p>Kings</p></div></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/4</h5>
-                        <h6 class="time">1:30 PM</h6>
+                        <div class="date">8/4</div>
+                        <div class="time">1:30 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">04</p>
-                            <div class="team1"><img src="/assets/img/teams/LAC.svg" alt="Los Angeles Clippers" /> <p>Clippers</p></div>
-                            <div class="team2"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team1"><img src="/assets/img/teams/LAC.svg" loading="lazy" alt="Los Angeles Clippers" /> <p>Clippers</p></div>
+                            <div class="team2"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/6</h5>
-                        <h6 class="time">5:30 PM</h6>
+                        <div class="date">8/6</div>
+                        <div class="time">5:30 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">05</p>
-                            <div class="team1"><img src="/assets/img/teams/MIL.svg" alt="Milwaukee Bucks" /> <p>Bucks</p></div>
-                            <div class="team2"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team1"><img src="/assets/img/teams/MIL.svg" loading="lazy" alt="Milwaukee Bucks" /> <p>Bucks</p></div>
+                            <div class="team2"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/8</h5>
-                        <h6 class="time">7:30 PM</h6>
+                        <div class="date">8/8</div>
+                        <div class="time">7:30 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">06</p>
-                            <div class="team1"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
-                            <div class="team2"><img src="/assets/img/teams/UTA.svg" alt="Utah Jazz" /> <p>Jazz</p></div></div>
+                            <div class="team1"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team2"><img src="/assets/img/teams/UTA.svg" loading="lazy" alt="Utah Jazz" /> <p>Jazz</p></div></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/10</h5>
-                        <h6 class="time">2:00 PM</h6>
+                        <div class="date">8/10</div>
+                        <div class="time">2:00 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">07</p>
-                            <div class="team1"><img src="/assets/img/teams/POR.svg" alt="Portland Trail Blazers" /> <p>Trail Blazers</p></div>
-                            <div class="team2"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team1"><img src="/assets/img/teams/POR.svg" loading="lazy" alt="Portland Trail Blazers" /> <p>Trail Blazers</p></div>
+                            <div class="team2"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/11</h5>
-                        <h6 class="time">4:00 PM</h6>
+                        <div class="date">8/11</div>
+                        <div class="time">4:00 PM</div>
                     </div>
                 </li>
                 <li>
                     <div class="teams">
                         <div class="wrapper">
                             <p class="game-number">08</p>
-                            <div class="team1"><img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
-                            <div class="team2"><img src="/assets/img/teams/PHX.svg" alt="Phoenix Sunds" /> <p>Suns</p></div></div>
+                            <div class="team1"><img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" /> <p>Mavericks</p></div>
+                            <div class="team2"><img src="/assets/img/teams/PHX.svg" loading="lazy" alt="Phoenix Sunds" /> <p>Suns</p></div></div>
                         </div>
                     </div>
                     <div class="date-and-time">
-                        <h5 class="date">8/13</h5>
-                        <h6 class="time">TBD</h6>
+                        <div class="date">8/13</div>
+                        <div class="time">TBD</div>
                     </div>
                 </li>
             </ol>
@@ -325,22 +331,25 @@
         <div id="challenge" data-open="false">
             <div class="header">
                 <div class="brand-logos">
-                    <img class="logo-michelob" src="/assets/img/logo-michelob-white.svg" alt="Michelob Ultra"/>
-                    <img class="logo-mavs" src="/assets/img/teams/DAL.svg" alt="Michelob Ultra"/>
+                    <img class="logo-michelob" src="/assets/img/logo-michelob-white.svg" loading="lazy" alt="Michelob Ultra"/>
+                    <img class="logo-mavs" src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavs"/>
                 </div>
             </div>
             <div class="alert-close"></div>
             <form class="age-checker" name="age-checker">
                 <div class="wrapper">
                     <h2>Thanks for checking us out. Before we let you in we just need to see an ID.</h2>
+					<label class="hidden" for="mm">Month</label>
                     <input id="mm" name="mm" placeholder="MM" />
-                    <input id="dd" name="mm" placeholder="DD" />
-                    <input id="yyyy" name="mm" placeholder="YYYY" />
+					<label class="hidden" for="dd">Day</label>
+                    <input id="dd" name="dd" placeholder="DD" />
+					<label class="hidden" for="yyyy">Year</label>
+                    <input id="yyyy" name="yyyy" placeholder="YYYY" />
                     <p class="error not-old-enough">You are not old enough to enter this site.</p>
                     <p class="error fill-all-fields">Please fill all fields.</p>
                     <button class="button check" type="submit">Enter</button>
                 </div>
-                <img src="/assets/img/bottle-xs.png" srcset="/assets/img/bottle-xs.png 200w, /assets/img/bottle-sm.png 400w, /assets/img/bottle-md.png 600w," alt="Michelob Ultra Bottle" />
+                <img src="/assets/img/bottle-xs.png" srcset="/assets/img/bottle-xs.png 200w, /assets/img/bottle-sm.png 400w, /assets/img/bottle-md.png 600w," loading="lazy" alt="Michelob Ultra Bottle" />
             </form>
         </div>
     </main>
@@ -348,9 +357,9 @@
     <footer>
         <div class="container">
             <div class="brand-logos">
-                <img src="/assets/img/logo-michelob.svg" alt="Michelob Ultra" />
+                <img src="/assets/img/logo-michelob.svg" loading="lazy" alt="Michelob Ultra" />
                 <div class="divider"></div>
-                <img src="/assets/img/teams/DAL.svg" alt="Dallas Mavericks" />
+                <img src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavericks" />
             </div>
             <div class="copyrights">
                 <p>Enjoy Responsibly. © 2020 Anheuser-Busch, Michelob Ultra © Light Beer, St. Louis, MO</p>

@@ -1,13 +1,8 @@
 @font-face {
 	font-family: "gotham";
-	src: url("../../../assets/fonts/gothamblack.woff2");
-	font-weight: 900;
-}
-
-@font-face {
-	font-family: "gotham";
 	src: url("../../../assets/fonts/gothambold.woff2");
 	font-weight: 800;
+	font-display: swap;
 }
 
 @font-face {
@@ -15,6 +10,7 @@
 	src: url("../../../assets/fonts/gothammedium.woff2");
 	font-weight: 600;
 	font-weight: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -22,13 +18,7 @@
 	src: url("../../../assets/fonts/gothambook.woff2");
 	font-weight: 400;
 	font-weight: normal;
-}
-
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothamlight.woff2");
-	font-weight: 300;
-	font-weight: lighter;
+	font-display: swap;
 }
 
 /* Box sizing rules */
