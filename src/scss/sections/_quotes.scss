@@ -21,12 +21,18 @@
 		}
 	}
 	.bottle {
-		display: none;
+		margin: $space-md auto 0 auto;
+		position: relative;
+		max-width: 50vw;
+		max-height: 50vw;
+		overflow: hidden;
 		@include md-and-up {
 			display: block;
 			position: absolute;
 			bottom: 0;
-			right: calc(-25em + 35vw);
+			right: calc(-28em + 35vw);
+			max-width: 20em;
+			max-height: 100vh;
 			width: 20em;
 			img {
 				display: block;
