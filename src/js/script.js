@@ -57,7 +57,6 @@ import UltraAnimate from './modules/UltraAnimate.js';
 window.onload = () => {
 	// variables
 	const ribbon = new UltraAnimate('header .ribbon-wrapper');
-
 	// calls
 	ribbon.delay(400).show();
 };

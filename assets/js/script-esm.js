@@ -3352,7 +3352,6 @@ document.querySelector('.send-cheers button').addEventListener('click', () => {
 window.onload = () => {
 	// variables
 	const ribbon = new UltraAnimate('header .ribbon-wrapper');
-
 	// calls
 	ribbon.delay(400).show();
 };
