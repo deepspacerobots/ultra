@@ -58,8 +58,11 @@
 		letter-spacing: .05em;
 		font-size: 1.5em;
 		line-height: 1.2;
-		height: 14em;
+		height: 18em;
 		@extend %center-flex;
+		@include md-and-up {
+			height: 14em;
+		}
 		cite {
 			margin-top: $space-md;
 			font-size: 1.2rem;
