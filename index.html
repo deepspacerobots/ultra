@@ -93,9 +93,10 @@
 
 		<section id="photo" class="photo-upload">
 			<div class="container">
+				<img class="line-icon" src="/assets/img/icon-hoop.svg" alt="Hoop Icon" />
 				<h2>Ultra Fan Sweeps</h2>
 				<h3>Fill the Arena</h3>
-				<p>Soon the sound of the buzzer will return to the arena. The sneakers will squeak across the wood once again and the players will be back where they feel most at home. While basketball is coming back, something is still missing. You. Follow the steps below to enter for a chance to have your photo turned into a cardboard cutout that will fill a seat at the American Airlines Center once again.</p>
+				<p>While basketball is coming back, something is still missing. You. Follow the steps below to enter for a chance to have your photo turned into a cardboard cutout that will fill a seat at the American Airlines Center once again.</p>
 				<div class="photo-how-to">
 					<div class="sample-image">
 						<img src="/assets/img/sample-xs.jpg" 
@@ -106,14 +107,14 @@
 					</div>
 					<div class="photo-steps">
 						<ol>
-							<li>Get out your best Mavs gear and dress to show your team spirit!</li>
-							<li>Grab another MFFL and find a blank white wall for your backdrop.</li>
-							<li>Frame your photo from the waist up, keep your arms by your sides and smile! You're going to the game!</li>
+							<li>Throw on your favorite Mavs gameday gear.</li>
+							<li>Snap a photo against a blank white wall aiming for the waist up.</li>
+							<li>Keep your arms by your side and give us your best smile. Your game face could be headed to the AAC!</li>
 						</ol>
 						<a href="#" target="_blank" rel="noreferrer" class="button button-white">Submit Your Photo</a>
 					</div>
 				</div>
-				<p class="small"><em>By submitting a photo, you verify that this is a photo of you and you are over 21. <a href="#" target="_blank" rel="noreferrer">Sweepstake Rules</a></em></p>
+				<p class="small"><em>ULTRA FANS SWEEPSTAKES: No Purchase Necessary.  Open to residents of Collin County, TX; Dallas County, TX; Denton County, TX; Fort Worth County, TX; and Tarrant County, TX who are 21+.  Begins 7/27/20 and ends 8/12/20.  See Official Rules for prizes and details.  Message and data rates may apply.  Void where prohibited. <a href="#" target="_blank" rel="noreferrer">OFFICIAL RULES </a></em></p>
 			</div>
 		</section>
 
@@ -157,14 +158,17 @@
 		<section class="two-up">
             <div class="wrapper">
                 <div class="content send-cheers">
+					<img class="line-icon" src="/assets/img/icon-bottles.svg" alt="Bottles Icon" />
                     <h2>Send Your Cheers</h2>
-                    <p>Hype up your team from home with a toast to the Dallas Mavericks.</p>
+                    <p>Hype up your team from home and share some words of encouragement to let the Mavs know how excited you are for the season to start. Your message could end up on a billboard!</p>
                     <button class="button button-white">Send Message</button>
                 </div>
                 <div class="divider"></div>
                 <div class="content">
+					<img class="line-icon" src="/assets/img/icon-computer.svg" alt="Computer Icon" />
                     <h2>Zoom Backgrounds</h2>
-                    <p>Take your watch party team spirit to the next level with a branded zoom background.</p>
+
+                    <p>Take your love of Michelob ULTRA and the Dallas Mavs to the next level. Download a branded zoom background and have the best box at the virtual watch party.</p>
                     <a href="#" class="button button-white" target="_blank" rel="noreferrer">Download</a>
                 </div>
             </div>
@@ -312,7 +316,7 @@
             </div>
         </div>
 
-        <div id="challenge" data-open="true">
+        <div id="challenge" data-open="false">
             <div class="header">
                 <div class="brand-logos">
                     <img class="logo-michelob" src="/assets/img/logo-michelob-white.svg" alt="Michelob Ultra"/>
@@ -320,18 +324,18 @@
                 </div>
             </div>
             <div class="alert-close"></div>
-            <div class="age-checker">
+            <form class="age-checker" name="age-checker">
                 <div class="wrapper">
-                    <h2>We need to check your ID. You must be of legal drinking age to enter this site.</h2>
+                    <h2>Thanks for checking us out. Before we let you in we just need to see an ID.</h2>
                     <input id="mm" name="mm" placeholder="MM" />
                     <input id="dd" name="mm" placeholder="DD" />
                     <input id="yyyy" name="mm" placeholder="YYYY" />
                     <p class="error not-old-enough">You are not old enough to enter this site.</p>
                     <p class="error fill-all-fields">Please fill all fields.</p>
-                    <div class="button check">Enter</div>
+                    <button class="button check" type="submit">Enter</button>
                 </div>
                 <img src="/assets/img/bottle-xs.png" srcset="/assets/img/bottle-xs.png 200w, /assets/img/bottle-sm.png 400w, /assets/img/bottle-md.png 600w," alt="Michelob Ultra Bottle" />
-            </div>
+            </form>
         </div>
     </main>
 
@@ -352,8 +356,8 @@
         </div>
     </footer>
 
-    <script defer async type="module" src="/assets/js/script-esm.js"></script>
-    <script defer async nomodule src="/assets/js/script.js"></script>
+    <script defer async type="module" src="/assets/js/script-esm-min.js"></script>
+    <script defer async nomodule src="/assets/js/script-min.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {

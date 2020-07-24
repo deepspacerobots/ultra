@@ -4995,36 +4995,45 @@ var cookies = new CookieJar();
 if (document.getElementById('challenge')) {
   var challengeModal = new Alert('#challenge', cookies);
 
-  if (!cookies.get("authorized")) {
+  if (!cookies.get('authorized')) {
     challengeModal.open();
   }
 }
 
-document.querySelector('.age-checker div.check').addEventListener("click", function (e) {
-  var month = parseInt(document.querySelector('.age-checker input#mm').value);
-  var day = parseInt(document.querySelector('.age-checker input#dd').value);
-  var year = parseInt(document.querySelector('.age-checker input#yyyy').value);
-  document.querySelector(".error.fill-all-fields").classList.remove("visible");
-  document.querySelector(".error.not-old-enough").classList.remove("visible");
-  var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
+if (!cookies.get('authorized')) {
+  document.getElementById('challenge').dataset.open = true;
+}
 
-  if (month && year && day) {
-    if (month == 1) {
-      month = 0;
-    }
+if (document.forms['age-checker']) {
+  var challengeForm = document.forms['age-checker'];
+  challengeForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var month = parseInt(challengeForm.querySelector('input#mm').value);
+    var day = parseInt(challengeForm.querySelector('input#dd').value);
+    var year = parseInt(challengeForm.querySelector('input#yyyy').value);
+    document.querySelector('.error.fill-all-fields').classList.remove('visible');
+    document.querySelector('.error.not-old-enough').classList.remove('visible');
+    var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
 
-    if (user_age < 21) {
-      cookies.set("authorized", false);
-      document.querySelector(".error.not-old-enough").classList.add("visible");
+    if (month && year && day) {
+      if (month == 1) {
+        month = 0;
+      }
+
+      if (user_age < 21) {
+        cookies.set('authorized', false);
+        document.querySelector('.error.not-old-enough').classList.add('visible');
+      } else {
+        cookies.set('authorized', true);
+        var challenge = new Alert('#challenge', cookies);
+        challenge.close();
+      }
     } else {
-      cookies.set("authorized", true);
-      var challenge = new Alert('#challenge', cookies);
-      challenge.close();
+      document.querySelector('.error.fill-all-fields').classList.add('visible');
     }
-  } else {
-    document.querySelector(".error.fill-all-fields").classList.add("visible");
-  }
-});
+  });
+}
+
 document.querySelector('.send-cheers button').addEventListener('click', function () {
   var cheers = new Alert('#cheers', cookies);
   cheers.open();
