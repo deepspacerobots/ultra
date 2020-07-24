@@ -1,9 +1,6 @@
 .schedule {
     padding: $space-md 0;
     padding-bottom: $space-lg;
-    background:linear-gradient(rgba(white,0.7), rgba(white, 0.7)), url("../../../assets/img/white-jersey.jpg");
-    background-position: center;
-    background-size:cover;
     h2 {
         font-weight: 800;
         text-transform: uppercase;
@@ -27,8 +24,12 @@
             grid-column-gap:$space-sm;
         }
         li {
-            display: grid;
-            grid-template-columns:3fr 1fr;
+            display: flex;
+            flex-direction: column-reverse;
+            @include md-and-up {
+                display: grid;
+                grid-template-columns:3fr 1fr;
+            }
             border-radius:5px;
             background: white;
             margin-bottom: $space-sm;
@@ -40,9 +41,10 @@
                 .wrapper {
                     height:max-content;
                     width:100%;
-                    margin-left:$space-md;
+                    padding:$space-sm 0;
                     @include sm-and-up {
                         margin-left:$space-lg;
+                        padding:inherit;
                     }
 
                     .game-number {
@@ -59,6 +61,10 @@
                         text-transform: uppercase;
                         font-weight: 800;
                         color:$color-brand-blue-dark;
+                        justify-content: center;
+                        @include md-and-up {
+                            justify-content: start;
+                        }
                         p {
                             margin-bottom: -15px;
                             font-size: 18px;
@@ -73,27 +79,42 @@
                 }
             }
             .date-and-time {
-                border-left: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
-                padding:$space-md 0;
+                border-bottom: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
+                padding:$space-sm 0;
+                position: relative;
+                @include md-and-up {
+                    border-left: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
+                    padding:$space-md 0;
+                    border-bottom: 0;
+                }
                 @extend %center-flex;
                 .date, .time {
                     margin: 0;
                     text-align: center;
                     color:$color-brand-blue-dark;
                     height: 25px;
-                    margin-bottom: 15px;
+                    @include md-and-up {
+                        margin-bottom: 15px;
+                    }
                 }
                 .date {
-                    font-size: 20px;
+                    font-size: 25px;
                     @include md-and-up {
                         font-size: 30px;
                     }
                 }
                 .time {
+                    position: absolute;
+                    right: 10px;
+                    top: 57%;
+                    height:auto;
+                    transform: translateY(-50%);
                     font-size: 14px;
                     margin-bottom: 0;
                     @include md-and-up {
                         font-size: 20px;
+                        position: static;
+                        height:25px;
                     }
                 }
             }
