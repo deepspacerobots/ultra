@@ -5,7 +5,7 @@
 	@extend %light-link;
 	text-align: center;
 	.container {
-		max-width: 46em;
+		max-width: 50em;
 		padding: $space-lg $space-md calc(1em + 8vw) $space-md;
 	}
 	h2 {
@@ -64,12 +64,13 @@
 		padding: 0;
 
 		li {
-			font-family: Arial, Helvetica;
-			font-weight: 600;
 			counter-increment: my-awesome-counter;
 			display: flex;
+
 			margin-bottom: $space-md;
 			&::before {
+				font-family: Arial, Helvetica;
+				font-weight: 400;
 				text-align: center;
 				display: block;
 				content: counter(my-awesome-counter);
@@ -77,7 +78,7 @@
 				width: 1.5em;
 				height: 1.5em;
 				border-radius: 2em;
-				border: .125em solid $color-brand-red;
+				border: .1em solid $color-brand-red;
 				font-size: 2rem;
 				margin-right: $space-sm;
 				padding: .15em;
