@@ -6,7 +6,7 @@
 	text-align: center;
 	.container {
 		max-width: 46em;
-		padding: calc(1em + 8vw) $space-md;
+		padding: $space-lg $space-md calc(1em + 8vw) $space-md;
 	}
 	h2 {
 		margin: 0 0 .15em 0;
@@ -28,16 +28,20 @@
 	font-weight: 400;
 	text-align: left;
 	margin: $space-lg 0;
+	flex-direction: column;
 	display: flex;
 	@include sm-and-up {
 		flex-direction: row;
 	}
 }
 .sample-image {
-	display: none;
+	max-width: 12em;
+	margin: 0 auto $space-md auto;
+
 	@include sm-and-up {
 		display: block;
-		max-width: 14em;
+		width: 20em;
+		flex-grow: 1;
 		padding-right: $space-md;
 	}
 }

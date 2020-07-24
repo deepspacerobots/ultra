@@ -95,7 +95,7 @@ body {
 	line-height: 1.5;
 	background: $color-ui-light;
 	color: $color-ui-dark;
-	font-size: 18px;
+	font-size: 1rem;
 }
 img,
 svg {
@@ -140,4 +140,12 @@ h4 {
 .small {
 	font-weight: 400;
 	font-size: 14px;
+}
+.line-icon {
+	width: 6em;
+	margin: 0 auto $space-md auto;
+}
+
+main {
+	overflow: hidden;
 }
