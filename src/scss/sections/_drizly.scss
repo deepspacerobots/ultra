@@ -9,7 +9,7 @@
         margin-left: auto;
         margin-right: auto;
         img {
-            width:calc(100px + 10vw);
+            width:calc(100px + 3vw);
             margin-left: auto;
             margin-right: auto;
             display: block;
@@ -20,7 +20,7 @@
         }
         p {
             margin: $space-md 0;
-            font-weight: 600;
+            font-weight: 400;
         }
         a.button.button-white {
             background: transparent;
