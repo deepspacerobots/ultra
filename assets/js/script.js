@@ -1707,12 +1707,13 @@ var Alert = /*#__PURE__*/function () {
   _createClass(Alert, [{
     key: "open",
     value: function open() {
-      console.log('called');
+      document.documentElement.dataset.alertOpen = true;
       this.alert.dataset.open = true;
     }
   }, {
     key: "close",
     value: function close() {
+      document.documentElement.dataset.alertOpen = false;
       this.alert.dataset.open = false;
       this.cookies.set('alert-' + this.cookieID, 'hide', 0);
     }

@@ -35,11 +35,12 @@ class Alert {
 	}
 
 	open() {
-		console.log('called');
+		document.documentElement.dataset.alertOpen = true;
 		this.alert.dataset.open = true;
 	}
 
 	close() {
+		document.documentElement.dataset.alertOpen = false;
 		this.alert.dataset.open = false;
 		this.cookies.set('alert-' + this.cookieID, 'hide', 0);
 	}

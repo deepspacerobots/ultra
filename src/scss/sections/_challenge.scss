@@ -1,16 +1,9 @@
 #challenge {
-	z-index: 9;
-	opacity: 1;
-	position: fixed;
-	top: 0;
-	height: 100%;
-	width: 100%;
 	background: linear-gradient(rgba($color-brand-blue-dark, 0.7), rgba($color-brand-blue-dark, 0.7)),
-		url('/assets/img/seats-md.jpg');
+		url("/assets/img/seats-md.jpg");
 	background-position: center;
 	background-size: cover;
-	@extend %center-flex;
-	transition: all 0.2s ease-in;
+
 	.header {
 		margin-bottom: $space-md;
 		width: max-content;
@@ -23,18 +16,20 @@
 				@include md-and-up {
 					height: 9em;
 				}
-				&.logo-michelob {
-					border-color: white;
-				}
 			}
+		}
+	}
+	.container {
+		margin-top: 5vh;
+		@include md-and-up {
+			margin-top: 15vh;
 		}
 	}
 }
 
-.age-checker {
+form.age-checker {
 	background: white;
-	padding: $space-lg $space-md;
-	margin: 0 20px;
+	padding: $space-md;
 	@include md-and-up {
 		max-width: 900px;
 		margin: 0 $space-lg;
@@ -44,16 +39,40 @@
 	}
 	position: relative;
 	display: grid;
-	border-radius: 10px;
+	border-radius: $border-radius;
 	img {
 		display: none;
+
+		width: 20em;
+		position: absolute;
+		right: calc(-25em + 25vw);
+		bottom: 0;
 		@include md-and-up {
 			display: block;
 		}
-		width: 22em;
-		position: absolute;
-		right: -8em;
-		bottom: 0;
+		@include lg-and-up {
+			display: block;
+			right: -8em;
+		}
+	}
+	@include placeholder {
+		text-align: center;
+		color: $color-brand-blue-dark;
+		@include md-and-up {
+		}
+	}
+	input {
+		text-align: center;
+		font-size: 1.1em;
+		padding: 0.75em;
+		border-width: 3px;
+		color: $color-brand-blue-dark;
+		font-weight: 600;
+		@include md-and-up {
+			margin-bottom: 0;
+		}
+
+		width: 100%;
 	}
 	.wrapper {
 		display: block;
@@ -64,74 +83,44 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 		grid-gap: $space-sm;
-		@include placeholder {
-			color: $color-brand-blue-dark;
 
-			@include md-and-up {
-			}
-
-			text-align: center;
-		}
-		input {
-			font-size: 1.5em;
-			margin-bottom: $space-sm;
-			height: auto;
-			padding: .75em;
-			border: 4px solid $color-brand-blue-dark;
-			border-radius: .5em;
-			color: $color-brand-blue-dark;
-			font-weight: 600;
-			@include md-and-up {
-				margin-bottom: 0;
-			}
-			text-align: center;
-			width: 100%;
-		}
 		h2,
 		.check,
 		.error {
 			grid-column-start: 1;
 			grid-column-end: 4;
 		}
-		h2 {
-			text-align: center;
-			font-size: 23px;
-			text-transform: uppercase;
-			color: $color-brand-blue-dark;
-			margin-bottom: $space-sm;
-			@include md-and-up {
-				margin-bottom: 0;
-				font-size: 30px;
-				line-height: 35px;
-			}
-		}
-		.error {
-			text-align: center;
-			margin-bottom: 0;
-			color: $color-brand-red;
-			display: none;
-			margin-bottom: $space-sm;
-			@include md-and-up {
-				margin-bottom: -$space-md;
-			}
-			&.visible {
-				display: block;
-			}
-		}
-		.check {
-			background: $color-brand-red;
-			border: none;
-			color: white;
-			@include md-and-up {
-				margin-top: $space-md;
-			}
-			display: block;
-			width: 100%;
+	}
+	h2 {
+		text-align: center;
+		font-size: 1.3em;
+		text-transform: uppercase;
+		color: $color-brand-blue-dark;
+		margin: $space-md 0;
+		@include md-and-up {
 		}
 	}
-}
-
-#challenge[data-open="false"] {
-	z-index: -1;
-	opacity: 0;
+	.error {
+		text-align: center;
+		margin-bottom: 0;
+		color: $color-brand-red;
+		display: none;
+		margin-bottom: $space-sm;
+		@include md-and-up {
+			margin-bottom: -$space-md;
+		}
+		&.visible {
+			display: block;
+		}
+	}
+	.check {
+		background: $color-brand-red;
+		border: none;
+		color: white;
+		@include md-and-up {
+			margin-top: $space-md;
+		}
+		display: block;
+		width: 100%;
+	}
 }
