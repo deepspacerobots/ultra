@@ -2,6 +2,10 @@
 	padding: $space-md 0;
 	padding-bottom: $space-lg;
 	position: relative;
+	background: #f3f3f3;
+	@include md-and-up {
+		background:transparent;
+	}
 	h2 {
 		font-weight: 800;
 		text-transform: uppercase;
@@ -57,12 +61,19 @@
 		}
 
 		.game-number {
-			position: absolute;
-			top: 10px;
-			left: 10px;
-			color: $color-brand-red-dark;
+			color: #D00A2C;
 			font-weight: 800;
 			font-size: calc(16px + 0.5vw);
+
+			margin-top: -60px;
+			margin-bottom: 30px;
+			margin-left: 10px;
+			@include md-and-up {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				margin: 0;
+			}
 		}
 		.team1,
 		.team2 {
@@ -116,17 +127,21 @@
 		}
 	}
 	.time {
-		position: absolute;
 		right: 10px;
-		top: 57%;
-		height: auto;
-		transform: translateY(-50%);
+		height: 20px;
 		font-size: 14px;
 		margin-bottom: 0;
+		width: 100%;
+		text-align: right;
+		padding-right: 20px;
+		margin-top: -20px;
 		@include md-and-up {
 			font-size: 20px;
 			position: static;
 			height: 10px;
+			text-align: center;
+			margin-top: 0;
+			padding-right: 0;
 		}
 	}
 }
@@ -139,4 +154,8 @@
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+	display: none;
+	@include md-and-up {
+		display: block;
+	}
 }
