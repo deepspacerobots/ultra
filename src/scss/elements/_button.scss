@@ -13,13 +13,14 @@ input[type="submit"] {
 	color: $color-ui-light;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "gotham";
+	font-family: "Gotham A", "Gotham B";
 	font-size: 1rem;
 	font-weight: 600;
-	height: 3em;
 	letter-spacing: 0.15rem;
-	line-height: 3.5;
-	padding: 0 2em;
+	height:auto;
+	line-height:normal;
+	padding:14px 40px;
+	//padding-top: 25px;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;

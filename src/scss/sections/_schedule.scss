@@ -7,7 +7,7 @@
 		background:transparent;
 	}
 	h2 {
-		font-weight: 800;
+		font-weight: 700;
 		text-transform: uppercase;
 		text-align: center;
 		color: $color-brand-blue-dark;
@@ -80,14 +80,13 @@
 			display: flex;
 			align-items: center;
 			text-transform: uppercase;
-			font-weight: 800;
+			font-weight: 700;
 			color: $color-brand-blue-dark;
 			justify-content: center;
 			@include md-and-up {
 				justify-content: start;
 			}
 			p {
-				margin-bottom: -15px;
 				font-size: 18px;
 				@include sm-and-up {
 					font-size: calc(20px + 0.5vw);
@@ -115,20 +114,19 @@
 		margin: 0;
 		text-align: center;
 		color: $color-brand-blue-dark;
-		height: 25px;
 		@include md-and-up {
 			margin-bottom: 15px;
 		}
 	}
 	.date {
 		font-size: 25px;
+		margin-bottom: 0;
 		@include md-and-up {
 			font-size: 30px;
 		}
 	}
 	.time {
 		right: 10px;
-		height: 20px;
 		font-size: 14px;
 		margin-bottom: 0;
 		width: 100%;
@@ -138,7 +136,6 @@
 		@include md-and-up {
 			font-size: 20px;
 			position: static;
-			height: 10px;
 			text-align: center;
 			margin-top: 0;
 			padding-right: 0;

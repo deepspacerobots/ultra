@@ -1,25 +1,25 @@
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothambold.woff2");
-	font-weight: 800;
-	font-display: swap;
-}
+// @font-face {
+// 	font-family: "gotham";
+// 	src: url("../../../assets/fonts/gothambold.woff2");
+// 	font-weight: 800;
+// 	font-display: swap;
+// }
 
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothammedium.woff2");
-	font-weight: 600;
-	font-weight: normal;
-	font-display: swap;
-}
+// @font-face {
+// 	font-family: "gotham";
+// 	src: url("../../../assets/fonts/gothammedium.woff2");
+// 	font-weight: 600;
+// 	font-weight: normal;
+// 	font-display: swap;
+// }
 
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothambook.woff2");
-	font-weight: 400;
-	font-weight: normal;
-	font-display: swap;
-}
+// @font-face {
+// 	font-family: "gotham";
+// 	src: url("../../../assets/fonts/gothambook.woff2");
+// 	font-weight: 400;
+// 	font-weight: normal;
+// 	font-display: swap;
+// }
 
 /* Box sizing rules */
 *,
@@ -78,7 +78,7 @@ body {
 	height: 100%;
 }
 body {
-	font-family: "gotham", sans-serif, Arial, Helvetica;
+	font-family: "Gotham A", "Gotham B";
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
