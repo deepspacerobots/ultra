@@ -35,12 +35,12 @@
 	}
 }
 .sample-image {
-	max-width: 12em;
+	max-width: 20em;
 	margin: 0 auto $space-md auto;
 
 	@include sm-and-up {
 		display: block;
-		width: 20em;
+		width: 100%;
 		flex-grow: 1;
 		padding-right: $space-md;
 	}
