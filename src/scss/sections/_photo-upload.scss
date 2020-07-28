@@ -8,19 +8,19 @@
 		padding: $space-lg $space-md calc(1em + 8vw) $space-md;
 	}
 	h2 {
-		margin: 0 0 .15em 0;
-		line-height: 1.1;
-		font-size: 2.2em;
+		margin: 0 0 0.15em 0;
+		line-height: 1.2;
+		font-size: 2.5em;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: .1em;
+		letter-spacing: 0.1em;
 	}
 	h3 {
 		text-transform: uppercase;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		font-weight: 800;
-		letter-spacing: .4em;
-		margin: 0 0 2em 0;
+		letter-spacing: 0.4em;
+		margin: 0 0 1em 0;
 	}
 }
 .photo-how-to {
@@ -43,6 +43,9 @@
 		flex-grow: 1;
 		padding-right: $space-md;
 	}
+	img {
+		box-shadow: 0.125em 0.125em 0.5em rgba(0, 0, 0, 0.5);
+	}
 }
 .photo-steps {
 	a {
@@ -53,7 +56,7 @@
 	}
 	@include sm-and-up {
 		padding-left: $space-md;
-		border-left: $border-width solid rgba($color-ui-light, .5);
+		border-left: $border-width solid rgba($color-ui-light, 0.5);
 	}
 
 	ol {
@@ -77,10 +80,10 @@
 				width: 1.5em;
 				height: 1.5em;
 				border-radius: 2em;
-				border: .1em solid $color-brand-red;
+				border: 0.1em solid $color-brand-red;
 				font-size: 2rem;
 				margin-right: $space-sm;
-				padding: .15em;
+				padding: 0.15em;
 				line-height: 1;
 			}
 		}

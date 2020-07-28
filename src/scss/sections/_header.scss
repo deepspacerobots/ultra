@@ -1,5 +1,10 @@
 .header {
-	*[class^="container"] {
+	position: relative;
+	.header-wrap {
+		padding: $space-sm;
+		background: $color-ui-light;
+		position: relative;
+		z-index: 2;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -30,18 +35,21 @@
 }
 
 .ribbon-wrapper {
-	position: relative;
-	z-index: 3;
-	flex-shrink: 0;
-	width: 3em;
-	height: 4em;
+	top: 0;
+	position: absolute;
+	z-index: 1;
+	width: 5em;
+	left: calc(50% - 2.5em);
+	top: 0;
+
 	overflow: visible;
 	&.visible {
 		transform: none;
 	}
 	@include sm-and-up {
-		width: 5em;
-		height: 6em;
+		z-index: 3;
+		width: 6em;
+		left: calc(50% - 3em);
 	}
 }
 .ribbon {
@@ -60,7 +68,7 @@
 	a {
 		display: block;
 		width: 2.5em;
-		padding: .5em;
+		padding: 0.5em;
 	}
 	svg {
 		> * {
