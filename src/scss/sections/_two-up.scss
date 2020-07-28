@@ -1,12 +1,12 @@
 .two-up {
 	background: $color-brand-blue-dark;
 	color: white;
-	padding: $space-lg $space-sm;
-	@include lg-and-up {
+	padding: $space-lg $space-md;
+	@include md-and-up {
 		padding: $space-xl $space-lg;
 	}
 	.wrapper {
-		@include lg-and-up {
+		@include md-and-up {
 			display: grid;
 			grid-template-columns: 1fr 2px 1fr;
 			grid-gap: $space-lg;
@@ -19,7 +19,7 @@
 		.divider {
 			height: 1px;
 			margin-bottom: $space-lg;
-			@include lg-and-up {
+			@include md-and-up {
 				height: 100%;
 				margin-bottom: 0;
 			}
@@ -32,7 +32,7 @@
 			&:last-child {
 				margin-bottom: 0;
 			}
-			@include lg-and-up {
+			@include md-and-up {
 				margin-bottom: 0;
 			}
 			h2 {
