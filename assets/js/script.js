@@ -1707,12 +1707,13 @@ var Alert = /*#__PURE__*/function () {
   _createClass(Alert, [{
     key: "open",
     value: function open() {
-      console.log('called');
+      document.documentElement.dataset.alertOpen = true;
       this.alert.dataset.open = true;
     }
   }, {
     key: "close",
     value: function close() {
+      document.documentElement.dataset.alertOpen = false;
       this.alert.dataset.open = false;
       this.cookies.set('alert-' + this.cookieID, 'hide', 0);
     }
@@ -5007,6 +5008,7 @@ if (!cookies.get('authorized')) {
 if (document.forms['age-checker']) {
   var challengeForm = document.forms['age-checker'];
   challengeForm.addEventListener('submit', function (e) {
+    window.scrollTo(0, 0);
     e.preventDefault();
     var month = parseInt(challengeForm.querySelector('input#mm').value);
     var day = parseInt(challengeForm.querySelector('input#dd').value);

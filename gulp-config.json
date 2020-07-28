@@ -3,7 +3,7 @@
 		"main": "src/js/script.js",
 		"es5": "assets/js/script.js",
 		"es6": "assets/js/script-esm.js",
-		"deps": "src/js/dependencies/**/*.js",
+		"deps": "src/js/modules/**/*.js",
 		"output": "assets/js/"
 	},
 	"style": {

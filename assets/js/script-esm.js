@@ -35,11 +35,12 @@ class Alert {
 	}
 
 	open() {
-		console.log('called');
+		document.documentElement.dataset.alertOpen = true;
 		this.alert.dataset.open = true;
 	}
 
 	close() {
+		document.documentElement.dataset.alertOpen = false;
 		this.alert.dataset.open = false;
 		this.cookies.set('alert-' + this.cookieID, 'hide', 0);
 	}
@@ -3316,6 +3317,7 @@ if (!cookies.get('authorized')) {
 if (document.forms['age-checker']) {
 	const challengeForm = document.forms['age-checker'];
 	challengeForm.addEventListener('submit', (e) => {
+		window.scrollTo(0, 0);
 		e.preventDefault();
 		var month = parseInt(challengeForm.querySelector('input#mm').value);
 		var day = parseInt(challengeForm.querySelector('input#dd').value);

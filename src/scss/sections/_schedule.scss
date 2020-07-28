@@ -31,7 +31,7 @@
 				display: grid;
 				grid-template-columns: 3fr 1fr;
 			}
-			border-radius: 5px;
+			border-radius: $border-radius;
 			background: white;
 			margin-bottom: $space-sm;
 			border: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;

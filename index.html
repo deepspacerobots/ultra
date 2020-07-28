@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-alert-open="false">
 <head>
 	<meta charset="utf-8">
 	<title>ULTRA Fan Sweeps | Fill The Arena</title>
@@ -166,7 +166,7 @@
 					<img class="line-icon" src="/assets/img/icon-bottles.svg" loading="lazy" alt="Bottles Icon" />
                     <h2>Send Your Cheers</h2>
                     <p>Hype up your team from home and share some words of encouragement to let the Mavs know how excited you are for the season to start. Your message could end up on a billboard!</p>
-                    <button class="button button-white">Send Message</button>
+                    <button class="button button-ghost">Send Message</button>
                 </div>
                 <div class="divider"></div>
                 <div class="content">
@@ -174,7 +174,7 @@
                     <h2>Zoom Backgrounds</h2>
 
                     <p>Take your love of Michelob ULTRA and the Dallas Mavs to the next level. Download a branded zoom background and have the best box at the virtual watch party.</p>
-                    <a download href="/assets/zoom-backgrounds.zip" class="button button-white" target="_blank" rel="noreferrer">Download</a>
+                    <a download href="/assets/zoom-backgrounds.zip" class="button button-ghost" target="_blank" rel="noreferrer">Download</a>
                 </div>
             </div>
         </section>
@@ -184,7 +184,7 @@
                 <img src="/assets/img/buy-beer-online.svg" alt="Drizly" />
                 <h2>Bring it home, Dallas.</h2>
                 <p>MFFLs have the same goals this season: bringing home a six pack of Michelob Ultra and the Larry O'Brien Trophy. So while you cheer for a championship, experience the home court advantage of beer delivered right to your front door.</p>
-                <a class="button button-white" target="_blank" href="http://buybeeronline.com/michelob" rel="noreferrer">Purchase</a>
+                <a class="button button-ghost" target="_blank" href="http://buybeeronline.com/michelob" rel="noreferrer">Purchase</a>
             </div>
         </section>
 
@@ -307,7 +307,7 @@
             <p class="disclaimer">All times are in Central Standard Time</p>
         </section>
 
-        <div id="cheers" data-open="false">
+        <div id="cheers" class="alert" data-open="false">
             <div class="container">
                 <div class="alert-close"><svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><polygon points='400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49'/></svg></div>
                 <h2>Send Your Cheers</h2>
@@ -320,36 +320,38 @@
                     <input placeholder="Instagram Handle" name="instagram_handle" id="instagram_handle" type="text" required maxLength="50"/>
                     <label for="your_message">Your Message</label>
                     <textarea placeholder="Your Message (200 character max)..." name="your_message" id="your_message" required maxLength="200"></textarea>
-                    <button>Submit</button>
+                    <button class="button button-red">Submit</button>
                 </form>
 				<p id="cheers-success" class="hidden">Got it, thanks for the shout-out!</p>
 				<p id="cheers-error" class="hidden">Looks like something went wrong. Refresh the page and try again.</p>
             </div>
         </div>
 
-        <div id="challenge" data-open="false">
-            <div class="header">
-                <div class="brand-logos">
-                    <img class="logo-michelob" src="/assets/img/logo-michelob-white.svg" loading="lazy" alt="Michelob Ultra"/>
-                    <img class="logo-mavs" src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavs"/>
-                </div>
-            </div>
-            <div class="alert-close"></div>
-            <form class="age-checker" name="age-checker">
-                <div class="wrapper">
-                    <h2>Thanks for checking us out. Before we let you in we just need to see an ID.</h2>
-					<label class="hidden" for="mm">Month</label>
-                    <input id="mm" name="mm" placeholder="MM" />
-					<label class="hidden" for="dd">Day</label>
-                    <input id="dd" name="dd" placeholder="DD" />
-					<label class="hidden" for="yyyy">Year</label>
-                    <input id="yyyy" name="yyyy" placeholder="YYYY" />
-                    <p class="error not-old-enough">You are not old enough to enter this site.</p>
-                    <p class="error fill-all-fields">Please fill all fields.</p>
-                    <button class="button check" type="submit">Enter</button>
-                </div>
-                <img src="/assets/img/bottle-xs.png" srcset="/assets/img/bottle-xs.png 200w, /assets/img/bottle-sm.png 400w, /assets/img/bottle-md.png 600w," loading="lazy" alt="Michelob Ultra Bottle" />
-            </form>
+        <div id="challenge" class="alert" data-open="false">
+			<div class="container">
+				<div class="header">
+					<div class="brand-logos">
+						<img class="logo-michelob" src="/assets/img/logo-michelob-white.svg" loading="lazy" alt="Michelob Ultra"/>
+						<img class="logo-mavs" src="/assets/img/teams/DAL.svg" loading="lazy" alt="Dallas Mavs"/>
+					</div>
+				</div>
+				<div class="alert-close"></div>
+				<form class="age-checker" name="age-checker">
+					<div class="wrapper">
+						<h2>Thanks for checking us out. Before we let you in we just need to see an ID.</h2>
+						<label class="hidden" for="mm">Month</label>
+						<input id="mm" name="mm" placeholder="MM" />
+						<label class="hidden" for="dd">Day</label>
+						<input id="dd" name="dd" placeholder="DD" />
+						<label class="hidden" for="yyyy">Year</label>
+						<input id="yyyy" name="yyyy" placeholder="YYYY" />
+						<p class="error not-old-enough">You are not old enough to enter this site.</p>
+						<p class="error fill-all-fields">Please fill all fields.</p>
+						<button class="button check" type="submit">Enter</button>
+					</div>
+					<img src="/assets/img/bottle-xs.png" srcset="/assets/img/bottle-xs.png 200w, /assets/img/bottle-sm.png 400w, /assets/img/bottle-md.png 600w," loading="lazy" alt="Michelob Ultra Bottle" />
+				</form>
+			</div>
         </div>
     </main>
 
