@@ -10,6 +10,10 @@ textarea {
 	padding: 1em;
 	border: $border-width solid $color-brand-blue-dark;
 	margin-bottom: 1.5em;
+	&:focus {
+		outline: none !important;
+		border: $border-width solid $color-brand-red;
+	}
 }
 
 textarea {

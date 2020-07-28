@@ -5008,6 +5008,7 @@ if (!cookies.get('authorized')) {
 if (document.forms['age-checker']) {
   var challengeForm = document.forms['age-checker'];
   challengeForm.addEventListener('submit', function (e) {
+    window.scrollTo(0, 0);
     e.preventDefault();
     var month = parseInt(challengeForm.querySelector('input#mm').value);
     var day = parseInt(challengeForm.querySelector('input#dd').value);
