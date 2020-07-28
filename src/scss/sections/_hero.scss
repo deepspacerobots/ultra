@@ -8,14 +8,23 @@
 	text-transform: uppercase;
 	font-weight: 600;
 	h1 {
-		font-size: 1.3rem;
+		font-size: 15px;
+		@include sm-and-up {
+			font-size: calc(14px + 1vw);
+		}
+		@include md-and-up {
+			font-size: calc(0.3rem + 2vw);
+		}
 		letter-spacing: 0.4em;
 		margin: 0 0 1.5em 0;
 	}
 	h2 {
 		margin: 0 0 2em 0;
 		line-height: 1.2;
-		font-size: 2.75em;
+		font-size: calc(24px + 2vw);
+		@include md-and-up {
+			font-size: calc(1.75em + 3vw);
+		}
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
