@@ -5,33 +5,29 @@
 	@extend %light-link;
 	position: relative;
 	overflow: hidden;
+	font-weight: bold;
 	text-transform: uppercase;
-	font-weight: 600;
 	h1 {
-		font-size: 15px;
-		@include sm-and-up {
-			font-size: calc(14px + 1vw);
-		}
+		font-size: 1.8em;
+		letter-spacing: 0.3em;
+		line-height: 1.3;
+		margin: 0 0 0.75em 0;
 		@include md-and-up {
-			font-size: calc(0.3rem + 2vw);
+			font-size: calc(0.75em + 2vw);
 		}
-		letter-spacing: 0.4em;
-		margin: 0 0 1.5em 0;
 	}
 	h2 {
-		margin: 0 0 2em 0;
-		line-height: 1.2;
-		font-size: calc(24px + 2vw);
+		font-size: 3.5em;
+		margin: 0 0 0.75em 0;
+		line-height: 1.1;
+
 		@include md-and-up {
-			font-size: calc(1.75em + 3vw);
+			font-size: calc(1.5em + 5vw);
 		}
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
 	}
 }
 .hero-content {
-	padding: calc(6em + 12vw) $space-md 4vw $space-md;
+	padding: calc(5em + 12vw) $space-md 4vw $space-md;
 	@include sm-and-up {
 		padding: calc(4em + 12vw) $space-md 4vw $space-md;
 	}

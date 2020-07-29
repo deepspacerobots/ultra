@@ -8,18 +8,18 @@ input[type="reset"],
 input[type="submit"] {
 	opacity: 1;
 	background-color: $color-brand-blue-dark;
-	border: 0.1rem solid $color-brand-blue-dark;
+	border: $border-width solid $color-brand-blue-dark;
 	border-radius: $border-radius;
 	color: $color-ui-light;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Gotham A", "Gotham B";
+	font-family: "National";
 	font-size: 1rem;
-	font-weight: 600;
+	font-weight: bold;
 	letter-spacing: 0.15rem;
-	height:auto;
-	line-height:normal;
-	padding:14px 40px;
+	height: auto;
+	line-height: normal;
+	padding: 14px 40px;
 	//padding-top: 25px;
 	text-align: center;
 	text-decoration: none;
