@@ -73,6 +73,11 @@ form.age-checker {
 		}
 
 		width: 100%;
+		@include ie {
+			width:30%;
+			float:left;
+			margin:1%;
+		}
 	}
 	.wrapper {
 		display: block;
@@ -83,7 +88,9 @@ form.age-checker {
 			grid-template-columns: repeat(3, 1fr);
 		}
 		grid-gap: $space-sm;
-
+		@include ie {
+			max-width:80%;
+		}
 		h2,
 		.check,
 		.error {
@@ -122,5 +129,9 @@ form.age-checker {
 		}
 		display: block;
 		width: 100%;
+	}
+
+	@include ie {
+
 	}
 }
