@@ -4,11 +4,9 @@
 	position: relative;
 	background: #f3f3f3;
 	@include md-and-up {
-		background:transparent;
+		background: transparent;
 	}
 	h2 {
-		font-weight: 700;
-		text-transform: uppercase;
 		text-align: center;
 		color: $color-brand-blue-dark;
 	}
@@ -19,7 +17,7 @@
 		display: block;
 	}
 	ol {
-		padding: $space-sm;
+		padding: $space-md;
 		max-width: $interior-max-width;
 		margin-left: auto;
 		margin-right: auto;
@@ -59,86 +57,79 @@
 			margin-left: $space-lg;
 			padding: inherit;
 		}
+	}
+	.game-number {
+		position: absolute;
+		color: $color-brand-red;
+		font-weight: bold;
+		top: 0.75em;
+		left: 0.75em;
+		//font-size: calc(16px + 0.5vw);
 
-		.game-number {
-			color: #D00A2C;
-			font-weight: 800;
-			font-size: calc(16px + 0.5vw);
-
-			margin-top: -60px;
-			margin-bottom: 30px;
-			margin-left: 10px;
-			@include md-and-up {
-				position: absolute;
-				top: 10px;
-				left: 10px;
-				margin: 0;
+		@include md-and-up {
+			top: 10px;
+			left: 10px;
+			margin: 0;
+		}
+	}
+	.team1,
+	.team2 {
+		display: flex;
+		align-items: center;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: $color-brand-blue-dark;
+		justify-content: center;
+		@include md-and-up {
+			justify-content: start;
+		}
+		p {
+			font-size: 1.75rem;
+			@include sm-and-up {
+				font-size: calc(1.75rem + 0.5vw);
 			}
 		}
-		.team1,
-		.team2 {
-			display: flex;
-			align-items: center;
-			text-transform: uppercase;
-			font-weight: 700;
-			color: $color-brand-blue-dark;
-			justify-content: center;
-			@include md-and-up {
-				justify-content: start;
-			}
-			p {
-				font-size: 18px;
-				@include sm-and-up {
-					font-size: calc(20px + 0.5vw);
-				}
-			}
-			img {
-				width: calc(40px + 0.4vw);
-			}
+		img {
+			width: calc(40px + 0.4vw);
 		}
 	}
 }
 .date-and-time {
+	color: $color-brand-blue-dark;
+	font-weight: bold;
 	border-bottom: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
-	padding: $space-sm 0;
-	position: relative;
+	padding: $space-sm;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	@include md-and-up {
+		flex-direction: column;
 		border-left: calc(#{$border-width} + 1px) solid $color-brand-blue-dark;
 		padding: $space-md 0;
 		border-bottom: 0;
 	}
-	@extend %center-flex;
-	.date,
-	.time {
-		font-weight: 600;
-		margin: 0;
-		text-align: center;
-		color: $color-brand-blue-dark;
-		@include md-and-up {
-			margin-bottom: 15px;
-		}
-	}
 	.date {
-		font-size: 25px;
-		margin-bottom: 0;
-		@include md-and-up {
-			font-size: 30px;
-		}
+		font-size: 2rem;
 	}
 	.time {
-		right: 10px;
-		font-size: 14px;
-		margin-bottom: 0;
-		width: 100%;
+		font-size: 1rem;
 		text-align: right;
-		padding-right: 20px;
-		margin-top: -20px;
 		@include md-and-up {
-			font-size: 20px;
-			position: static;
 			text-align: center;
-			margin-top: 0;
-			padding-right: 0;
+		}
+	}
+	.time,
+	.game-number {
+		width: 4rem;
+	}
+
+	.game-number {
+		font-size: 1.5rem;
+		color: $color-brand-red;
+		@include md-and-up {
+			position: absolute;
+			top: 0;
+			left: 0.5em;
 		}
 	}
 }
