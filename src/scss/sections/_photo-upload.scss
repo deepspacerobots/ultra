@@ -4,23 +4,15 @@
 	@extend %light-link;
 	text-align: center;
 	.container {
-		max-width: 50em;
+		max-width: 46em;
 		padding: $space-lg $space-md calc(1em + 8vw) $space-md;
 	}
 	h2 {
-		margin: 0 0 0.15em 0;
 		line-height: 1.2;
-		font-size: 2.5em;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
 	}
 	h3 {
-		text-transform: uppercase;
-		font-size: 1.1rem;
-		font-weight: 800;
-		letter-spacing: 0.4em;
-		margin: 0 0 1em 0;
+		letter-spacing: 0.2em;
+		margin: 0 0 0.5em 0;
 	}
 }
 
@@ -39,8 +31,9 @@
 	margin: 0 auto $space-md auto;
 
 	@include sm-and-up {
+		margin: 0;
 		display: block;
-		width: 100%;
+		width: 75%;
 		flex-grow: 1;
 		padding-right: $space-md;
 	}
