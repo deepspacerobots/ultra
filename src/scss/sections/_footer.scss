@@ -1,8 +1,14 @@
 footer {
 	background: white;
-	.container {
+	box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1);
+	position: relative;
+	z-index: 2;
+	.footer-container {
+		max-width:$interior-max-width;
 		display: block;
-		padding: $space-lg $space-md;
+		padding: $space-lg $space-sm;
+		margin-left: auto;
+		margin-right: auto;
 		@include md-and-up {
 			display: flex;
 		}
@@ -10,15 +16,36 @@ footer {
 
 	.copyrights {
 		padding: $space-md 0 0 0;
+		text-align: center;
 		@include md-and-up {
 			padding: 0 0 0 $space-md;
+			display: flex;
+			flex-direction: column;
+			align-content: flex-start;
+			justify-content: center;
+			text-align: left;
 		}
-		p {
+		p, a {
 			color: $color-brand-gray;
 			font-weight: bold;
 			text-transform: uppercase;
 			font-size: 14px;
 			margin-bottom: 5px;
+		}
+		a {
+			&#privacy-policy {
+				padding-right: $space-sm;
+			}
+		}
+		.legal {
+			display: flex;
+			justify-content: center;
+			border-top: 1px solid #ddd;
+			padding-top:10px;
+			margin-top:10px;
+			@include md-and-up {
+				justify-content: flex-start;
+			}
 		}
 	}
 }
@@ -28,6 +55,9 @@ footer {
 	width: max-content;
 	align-items: center;
 	margin: 0 auto;
+	@include md-and-up {
+		margin: 0;
+	}
 	img {
 		height: 5em;
 		width: auto;

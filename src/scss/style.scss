@@ -8,11 +8,10 @@
 
 // Elements
 @import "./elements/button";
-
-// Pages
-@import "./pages/Home";
+@import "./elements/form";
 
 // Sections
+@import "./sections/alert";
 @import "./sections/drizly";
 @import "./sections/footer";
 @import "./sections/header";

@@ -1,34 +1,18 @@
 @font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothamblack.woff2");
-	font-weight: 900;
+	font-family: "National";
+	src: url("../../../assets/fonts/National-Bold.woff2") format("woff2"),
+		url("../../../assets/fonts/National-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
 }
-
 @font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothambold.woff2");
-	font-weight: 800;
-}
-
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothammedium.woff2");
-	font-weight: 600;
+	font-family: "National";
+	src: url("../../../assets/fonts/National-Medium.woff2") format("woff2"),
+		url("../../../assets/fonts/National-Medium.woff") format("woff");
 	font-weight: normal;
-}
-
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothambook.woff2");
-	font-weight: 400;
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: "gotham";
-	src: url("../../../assets/fonts/gothamlight.woff2");
-	font-weight: 300;
-	font-weight: lighter;
+	font-style: normal;
+	font-display: swap;
 }
 
 /* Box sizing rules */
@@ -88,48 +72,57 @@ body {
 	height: 100%;
 }
 body {
-	font-family: "gotham", sans-serif, Arial, Helvetica;
+	font-family: "National";
 	min-height: 100vh;
 	scroll-behavior: smooth;
 	text-rendering: optimizeSpeed;
 	line-height: 1.5;
 	background: $color-ui-light;
 	color: $color-ui-dark;
-	font-size: 18px;
+	font-size: 1.125rem;
 }
+
 img,
 svg {
 	width: 100%;
 	height: auto;
 }
-
+h1,
+h2,
+h3 {
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 1.1;
+	margin-bottom: 0.5em;
+}
 h1 {
-	font-size: 3em;
+	font-size: 4em;
 	&.dynamic-text {
 		font-size: calc(1.5em + 2vw);
 	}
 }
 
 h2 {
-	font-size: 2em;
+	font-size: 2.4em;
 	&.dynamic-text {
 		font-size: calc(1.3em + 2vw);
 	}
 }
 
 h3 {
-	font-size: 1.5em;
+	font-size: 1.75em;
 	&.dynamic-text {
 		font-size: calc(1em + 2vw);
 	}
 }
 
 h4 {
-	font-size: 1.1em;
+	font-size: 1.5em;
 	&.dynamic-text {
 		font-size: calc(0.8em + 2vw);
 	}
 }
+
 .hidden {
 	position: absolute;
 	height: 0;
@@ -138,6 +131,13 @@ h4 {
 	overflow: hidden;
 }
 .small {
-	font-weight: 400;
 	font-size: 14px;
+}
+.line-icon {
+	width: 6em;
+	margin: 0 auto $space-md auto;
+}
+
+main {
+	overflow: hidden;
 }

@@ -17,7 +17,7 @@ const source = require('vinyl-source-stream');
 //const buffer = require('vinyl-buffer');
 
 // SFTP
-var sftp = require('gulp-sftp-up4');
+//var sftp = require('gulp-sftp-up4');
 
 // Config
 const config = require('./gulp-config');
@@ -124,15 +124,3 @@ gulp.task(
 );
 
 gulp.task('build', gulp.series([ 'jsRollup', 'jsTranspile', 'jsMinify', 'sass', 'sassMinify' ]));
-
-gulp.task('sftp', function() {
-	return gulp.src(config.sftp.src).pipe(
-		sftp({
-			host: config.sftp.host,
-			user: config.sftp.user,
-			pass: config.sftp.pass,
-			port: config.sftp.port,
-			remotePath: config.sftp.remotePath
-		})
-	);
-});

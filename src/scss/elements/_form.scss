@@ -1,0 +1,35 @@
+input,
+textarea {
+	border-radius: $border-radius;
+	color: $color-brand-blue-dark;
+}
+input,
+textarea {
+	display: block;
+	width: 100%;
+	padding: 1em;
+	border: $border-width solid $color-brand-blue-dark;
+	margin-bottom: 1.5em;
+	&:focus {
+		outline: none !important;
+		border: $border-width solid $color-brand-red;
+	}
+}
+
+textarea {
+	height: 150px;
+}
+label {
+	text-align: left;
+	width: 100%;
+	color: $color-brand-blue-dark;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	display: block;
+	margin-top: $space-sm;
+	padding-bottom: 0;
+}
+input + label {
+	margin-top: 1.5em;
+}

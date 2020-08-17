@@ -1,44 +1,44 @@
 .photo-upload {
-	font-weight: 600;
 	background: $color-brand-blue-dark;
 	color: $color-ui-light;
 	@extend %light-link;
 	text-align: center;
 	.container {
 		max-width: 46em;
-		padding: calc(1em + 8vw) $space-md;
+		padding: $space-lg $space-md calc(1em + 8vw) $space-md;
 	}
 	h2 {
-		margin: 0 0 .15em 0;
-		line-height: 1.1;
-		font-size: 2.2em;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: .1em;
+		line-height: 1.2;
 	}
 	h3 {
-		text-transform: uppercase;
-		font-size: 1.2rem;
-		font-weight: 800;
-		letter-spacing: .4em;
-		margin: 0 0 2em 0;
+		letter-spacing: 0.2em;
+		margin: 0 0 0.5em 0;
 	}
 }
+
 .photo-how-to {
 	font-weight: 400;
 	text-align: left;
 	margin: $space-lg 0;
+	flex-direction: column;
 	display: flex;
 	@include sm-and-up {
 		flex-direction: row;
 	}
 }
 .sample-image {
-	display: none;
+	max-width: 20em;
+	margin: 0 auto $space-md auto;
+
 	@include sm-and-up {
+		margin: 0;
 		display: block;
-		max-width: 14em;
+		width: 75%;
+		flex-grow: 1;
 		padding-right: $space-md;
+	}
+	img {
+		box-shadow: 0.125em 0.125em 0.5em rgba(0, 0, 0, 0.5);
 	}
 }
 .photo-steps {
@@ -50,7 +50,7 @@
 	}
 	@include sm-and-up {
 		padding-left: $space-md;
-		border-left: $border-width solid rgba($color-ui-light, .5);
+		border-left: $border-width solid rgba($color-ui-light, 0.5);
 	}
 
 	ol {
@@ -60,12 +60,13 @@
 		padding: 0;
 
 		li {
-			font-family: Arial, Helvetica;
-			font-weight: 600;
 			counter-increment: my-awesome-counter;
 			display: flex;
+
 			margin-bottom: $space-md;
 			&::before {
+				font-family: Arial, Helvetica;
+				font-weight: 400;
 				text-align: center;
 				display: block;
 				content: counter(my-awesome-counter);
@@ -73,10 +74,10 @@
 				width: 1.5em;
 				height: 1.5em;
 				border-radius: 2em;
-				border: .125em solid $color-brand-red;
+				border: 0.1em solid $color-brand-red;
 				font-size: 2rem;
 				margin-right: $space-sm;
-				padding: .15em;
+				padding: 0.15em;
 				line-height: 1;
 			}
 		}

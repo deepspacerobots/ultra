@@ -4,18 +4,60 @@ const cookies = new CookieJar();
 import Alert from './modules/alert';
 
 if (document.getElementById('challenge')) {
-	const challenge = new Alert('#challenge', cookies);
-}
-if (document.getElementById('cheers')) {
-	const cheers = new Alert('#cheers', cookies);
+	const challengeModal = new Alert('#challenge', cookies);
+	if (!cookies.get('authorized')) {
+		challengeModal.open();
+	}
 }
 
-import UltraAnimate from './UltraAnimate.js';
+import AgeVerification from './modules/AgeVerification.js';
+
+if (!cookies.get('authorized')) {
+	document.getElementById('challenge').dataset.open = true;
+}
+
+if (document.forms['age-checker']) {
+	const challengeForm = document.forms['age-checker'];
+	challengeForm.addEventListener('submit', (e) => {
+		window.scrollTo(0, 0);
+		e.preventDefault();
+		var month = parseInt(challengeForm.querySelector('input#mm').value);
+		var day = parseInt(challengeForm.querySelector('input#dd').value);
+		var year = parseInt(challengeForm.querySelector('input#yyyy').value);
+
+		document.querySelector('.error.fill-all-fields').classList.remove('visible');
+		document.querySelector('.error.not-old-enough').classList.remove('visible');
+
+		var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
+
+		if (month && year && day) {
+			if (month == 1) {
+				month = 0;
+			}
+			if (user_age < 21) {
+				cookies.set('authorized', false);
+				document.querySelector('.error.not-old-enough').classList.add('visible');
+			} else {
+				cookies.set('authorized', true);
+				const challenge = new Alert('#challenge', cookies);
+				challenge.close();
+			}
+		} else {
+			document.querySelector('.error.fill-all-fields').classList.add('visible');
+		}
+	});
+}
+
+document.querySelector('.send-cheers button').addEventListener('click', () => {
+	const cheers = new Alert('#cheers', cookies);
+	cheers.open();
+});
+
+import UltraAnimate from './modules/UltraAnimate.js';
 
 window.onload = () => {
 	// variables
 	const ribbon = new UltraAnimate('header .ribbon-wrapper');
-
 	// calls
 	ribbon.delay(400).show();
 };
@@ -45,19 +87,12 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbzNogh6rhcxKHGorzEaiT
 
 function cheersSuccess(form, response) {
 	console.log('Success!', response);
-	const successElement = document.createElement('p');
-	const successMessage = document.createTextNode('Got it, thanks for the shout-out!');
-	successElement.appendChild(successMessage);
 	form.style.display = 'none';
-	form.parentNode.insertBefore(successElement, form);
+	document.getElementById('cheers-success').classList.remove('hidden');
 }
 function cheersError(form, error) {
 	console.error('Error!', error.message);
-
-	const errorElement = document.createElement('p');
-	const errorMessage = document.createTextNode('Looks like something went wrong. Refresh the page and try again.');
-	errorElement.appendChild(errorMessage);
-	form.parentNode.insertBefore(errorElement, form);
+	document.getElementById('cheers-error').classList.remove('hidden');
 }
 
 if (document.forms['send-your-cheers']) {

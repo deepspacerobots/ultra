@@ -1,0 +1,42 @@
+html {
+	&[data-alert-open="true"] {
+		height: 100vh;
+		overflow: hidden;
+	}
+}
+
+.alert {
+	z-index: -1;
+	position: fixed;
+	overflow: scroll;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	padding: $space-sm;
+	background: rgba($color-brand-blue-dark, 0.7);
+	opacity: 0;
+	transition: opacity 200ms ease-in;
+
+	&[data-open="true"] {
+		z-index: 10;
+		display: block;
+		opacity: 1;
+	}
+}
+
+.alert-close {
+	@extend %button-clean;
+	width: 2.5em;
+	position: absolute;
+	right: 0.75em;
+	top: 0.75em;
+	opacity: 0.75;
+	&:hover {
+		opacity: 1;
+	}
+	svg {
+		* {
+			fill: $color-brand-blue-dark;
+		}
+	}
+}

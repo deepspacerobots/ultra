@@ -35,10 +35,12 @@ class Alert {
 	}
 
 	open() {
+		document.documentElement.dataset.alertOpen = true;
 		this.alert.dataset.open = true;
 	}
 
 	close() {
+		document.documentElement.dataset.alertOpen = false;
 		this.alert.dataset.open = false;
 		this.cookies.set('alert-' + this.cookieID, 'hide', 0);
 	}
@@ -59,6 +61,49 @@ class Alert {
 		}
 	}
 }
+
+const AgeVerification = (start, end) => {
+
+    // Copy date objects so don't modify originals
+    var s = new Date(+start);
+    var e = new Date(+end);
+    var timeDiff, years, months, days, hours, minutes, seconds;
+  
+    // Get estimate of year difference
+    years = e.getFullYear() - s.getFullYear();
+  
+    // Add difference to start, if greater than end, remove one year
+    // Note start from restored start date as adding and subtracting years
+    // may not be symetric
+    s.setFullYear(s.getFullYear() + years);
+    if (s > e) {
+      --years;
+      s = new Date(+start);
+      s.setFullYear(s.getFullYear() + years);
+    }
+    // Get estimate of months
+    months = e.getMonth() - s.getMonth();
+    months += months < 0? 12 : 0;
+  
+    // Add difference to start, adjust if greater
+    s.setMonth(s.getMonth() + months);
+    if (s > e) {
+      --months;
+      s = new Date(+start);
+      s.setFullYear(s.getFullYear() + years);
+      s.setMonth(s.getMonth() + months);
+    }
+  
+  
+    // Get remaining time difference, round to next full second
+    timeDiff = (e - s + 999) / 1e3 | 0;
+    days     =  timeDiff / 8.64e4 | 0;
+    hours    = (timeDiff % 8.64e4) / 3.6e3 | 0;
+    minutes  = (timeDiff % 3.6e3) / 6e1 | 0;
+    seconds  =  timeDiff % 6e1;
+  
+    return [years, months, days, hours, minutes, seconds];
+  };
 
 class UltraAnimate {
     constructor(element){
@@ -3259,16 +3304,56 @@ var tns = function(options) {
 const cookies = new CookieJar();
 
 if (document.getElementById('challenge')) {
-	const challenge = new Alert('#challenge', cookies);
+	const challengeModal = new Alert('#challenge', cookies);
+	if (!cookies.get('authorized')) {
+		challengeModal.open();
+	}
 }
-if (document.getElementById('cheers')) {
+
+if (!cookies.get('authorized')) {
+	document.getElementById('challenge').dataset.open = true;
+}
+
+if (document.forms['age-checker']) {
+	const challengeForm = document.forms['age-checker'];
+	challengeForm.addEventListener('submit', (e) => {
+		window.scrollTo(0, 0);
+		e.preventDefault();
+		var month = parseInt(challengeForm.querySelector('input#mm').value);
+		var day = parseInt(challengeForm.querySelector('input#dd').value);
+		var year = parseInt(challengeForm.querySelector('input#yyyy').value);
+
+		document.querySelector('.error.fill-all-fields').classList.remove('visible');
+		document.querySelector('.error.not-old-enough').classList.remove('visible');
+
+		var user_age = AgeVerification(new Date(year, month, day), new Date())[0];
+
+		if (month && year && day) {
+			if (month == 1) {
+				month = 0;
+			}
+			if (user_age < 21) {
+				cookies.set('authorized', false);
+				document.querySelector('.error.not-old-enough').classList.add('visible');
+			} else {
+				cookies.set('authorized', true);
+				const challenge = new Alert('#challenge', cookies);
+				challenge.close();
+			}
+		} else {
+			document.querySelector('.error.fill-all-fields').classList.add('visible');
+		}
+	});
+}
+
+document.querySelector('.send-cheers button').addEventListener('click', () => {
 	const cheers = new Alert('#cheers', cookies);
-}
+	cheers.open();
+});
 
 window.onload = () => {
 	// variables
 	const ribbon = new UltraAnimate('header .ribbon-wrapper');
-
 	// calls
 	ribbon.delay(400).show();
 };
@@ -3297,19 +3382,12 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbzNogh6rhcxKHGorzEaiT
 
 function cheersSuccess(form, response) {
 	console.log('Success!', response);
-	const successElement = document.createElement('p');
-	const successMessage = document.createTextNode('Got it, thanks for the shout-out!');
-	successElement.appendChild(successMessage);
 	form.style.display = 'none';
-	form.parentNode.insertBefore(successElement, form);
+	document.getElementById('cheers-success').classList.remove('hidden');
 }
 function cheersError(form, error) {
 	console.error('Error!', error.message);
-
-	const errorElement = document.createElement('p');
-	const errorMessage = document.createTextNode('Looks like something went wrong. Refresh the page and try again.');
-	errorElement.appendChild(errorMessage);
-	form.parentNode.insertBefore(errorElement, form);
+	document.getElementById('cheers-error').classList.remove('hidden');
 }
 
 if (document.forms['send-your-cheers']) {
