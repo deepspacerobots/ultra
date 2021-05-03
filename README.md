@@ -16,7 +16,7 @@ Install the dev environment build tools:
 This starts a browsersync session and hot-reloads the site in-browser when you edit a source file.
 
 `gulp images`
-This scales and compresses images in /src/img
+This scales and compresses images in /src/img. outputs scaled images to /asssets/img/
 
 `gulp build`
 This re-runs all build processes for style, images, and js to prep all assets for publishing.
