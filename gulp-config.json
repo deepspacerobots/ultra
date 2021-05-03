@@ -3,27 +3,31 @@
 		"main": "src/js/script.js",
 		"es5": "assets/js/script.js",
 		"es6": "assets/js/script-esm.js",
-		"deps": "src/js/modules/**/*.js",
-		"output": "assets/js/"
+		"deps": "src/js/dependencies/**/*.js",
+		"modules": "src/js/modules/**/*.js",
+		"dest": "assets/js/"
 	},
 	"style": {
 		"main": "src/scss/style.scss",
 		"src": "src/**/*.{scss,sass}",
-		"output": "assets/css/"
+		"dest": "assets/css/"
+	},
+	"images":{
+		"src":"src/img/*",
+		"dest":"assets/img/",
+		"sizes": [
+			{"width": 200, "quality": 90, "dir": "xs"},
+			{"width": 400, "quality": 80, "dir": "sm"},
+			{"width": 600, "quality": 80, "dir": "md"},
+			{"width": 1200, "quality": 70, "dir": "lg"},
+			{"width": 1400, "quality": 70, "dir": "xl"}
+		]
 	},
 	"markup": {
 		"templates": "**/*.html"
 	},
 	"server": {
-		"proxy": "http://ultra.local",
+		"proxy": "https://ultra.local",
 		"host": "ultra.local"
-	},
-	"sftp": {
-		"host": "domain.com",
-		"user": "domain-deepspace",
-		"pass": "deepspacerobots",
-		"port": 22,
-		"src": [ "./**/*", "!node_modules/**/*", "!package-lock.json" ],
-		"remotePath": "/path/to/web/root/"
 	}
 }

@@ -130,40 +130,18 @@ class UltraAnimate {
     }
 }
 
-// Object.keys
-if (!Object.keys) {
-  Object.keys = function(object) {
-    var keys = [];
-    for (var name in object) {
-      if (Object.prototype.hasOwnProperty.call(object, name)) {
-        keys.push(name);
-      }
-    }
-    return keys;
-  };
-}
+var win$1 = window;
 
-// ChildNode.remove
-if(!("remove" in Element.prototype)){
-  Element.prototype.remove = function(){
-    if(this.parentNode) {
-      this.parentNode.removeChild(this);
-    }
-  };
-}
+var raf = win$1.requestAnimationFrame
+  || win$1.webkitRequestAnimationFrame
+  || win$1.mozRequestAnimationFrame
+  || win$1.msRequestAnimationFrame
+  || function(cb) { return setTimeout(cb, 16); };
 
 var win = window;
 
-var raf = win.requestAnimationFrame
-  || win.webkitRequestAnimationFrame
-  || win.mozRequestAnimationFrame
-  || win.msRequestAnimationFrame
-  || function(cb) { return setTimeout(cb, 16); };
-
-var win$1 = window;
-
-var caf = win$1.cancelAnimationFrame
-  || win$1.mozCancelAnimationFrame
+var caf = win.cancelAnimationFrame
+  || win.mozCancelAnimationFrame
   || function(id){ clearTimeout(id); };
 
 function extend() {
@@ -245,8 +223,7 @@ function resetFakeBody (body, docOverflow) {
 }
 
 // get css-calc 
-// @return - false | calc | -webkit-calc | -moz-calc
-// @usage - var calc = getCalc(); 
+
 function calc() {
   var doc = document, 
       body = getBody(),
@@ -275,7 +252,7 @@ function calc() {
 }
 
 // get subpixel support value
-// @return - boolean
+
 function percentageLayout() {
   // check subpixel layout supporting
   var doc = document,
@@ -307,6 +284,10 @@ function percentageLayout() {
 }
 
 function mediaquerySupport () {
+  if (window.matchMedia || window.msMatchMedia) {
+    return true;
+  }
+  
   var doc = document,
       body = getBody(),
       docOverflow = setFakeBody(body),
@@ -335,7 +316,7 @@ function mediaquerySupport () {
 }
 
 // create and append style sheet
-function createStyleSheet (media) {
+function createStyleSheet (media, nonce) {
   // Create the <style> tag
   var style = document.createElement("style");
   // style.setAttribute("type", "text/css");
@@ -344,6 +325,9 @@ function createStyleSheet (media) {
   // style.setAttribute("media", "screen")
   // style.setAttribute("media", "only screen and (max-width : 1024px)")
   if (media) { style.setAttribute("media", media); }
+
+  // Add nonce attribute for Content Security Policy
+  if (nonce) { style.setAttribute("nonce", nonce); }
 
   // WebKit hack :(
   // style.appendChild(document.createTextNode(""));
@@ -495,6 +479,7 @@ function whichProperty(props){
   }
 
   var el = document.createElement('fakeelement');
+      props.length;
   for(var i = 0; i < props.length; i++){
     var prop = props[i];
     if( el.style[prop] !== undefined ){ return prop; }
@@ -617,6 +602,28 @@ function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
   }
 }
 
+// Object.keys
+if (!Object.keys) {
+  Object.keys = function(object) {
+    var keys = [];
+    for (var name in object) {
+      if (Object.prototype.hasOwnProperty.call(object, name)) {
+        keys.push(name);
+      }
+    }
+    return keys;
+  };
+}
+
+// ChildNode.remove
+if(!("remove" in Element.prototype)){
+  Element.prototype.remove = function(){
+    if(this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+
 var tns = function(options) {
   options = extend({
     container: '.slider',
@@ -669,9 +676,10 @@ var tns = function(options) {
     preventScrollOnTouch: false,
     freezable: true,
     onInit: false,
-    useLocalStorage: true
+    useLocalStorage: true,
+    nonce: false
   }, options || {});
-  
+
   var doc = document,
       win = window,
       KEYS = {
@@ -726,9 +734,9 @@ var tns = function(options) {
 
   // get element nodes from selectors
   var supportConsoleWarn = win.console && typeof win.console.warn === "function",
-      tnsList = ['container', 'controlsContainer', 'prevButton', 'nextButton', 'navContainer', 'autoplayButton'], 
+      tnsList = ['container', 'controlsContainer', 'prevButton', 'nextButton', 'navContainer', 'autoplayButton'],
       optionsElements = {};
-      
+
   tnsList.forEach(function(item) {
     if (typeof options[item] === 'string') {
       var str = options[item],
@@ -767,10 +775,10 @@ var tns = function(options) {
       var val = responsive[key];
       // update responsive
       // from: 300: 2
-      // to: 
-      //   300: { 
-      //     items: 2 
-      //   } 
+      // to:
+      //   300: {
+      //     items: 2
+      //   }
       val = typeof val === 'number' ? {items: val} : val;
       responsiveTem[key] = val;
     }
@@ -846,7 +854,7 @@ var tns = function(options) {
       autoplayText = getOption('autoplayText'),
       autoplayHoverPause = getOption('autoplayHoverPause'),
       autoplayResetOnVisibility = getOption('autoplayResetOnVisibility'),
-      sheet = createStyleSheet(),
+      sheet = createStyleSheet(null, getOption('nonce')),
       lazyload = options.lazyload,
       lazyloadSelector = options.lazyloadSelector,
       slidePositions, // collection of slide positions
@@ -866,7 +874,7 @@ var tns = function(options) {
           return function() { return center && !loop ? slideCount - 1 : Math.ceil(- rightBoundary / (fixedWidth + gutter)); };
         } else if (autoWidth) {
           return function() {
-            for (var i = slideCountNew; i--;) {
+            for (var i = 0; i < slideCountNew; i++) {
               if (slidePositions[i] >= - rightBoundary) { return i; }
             }
           };
@@ -881,12 +889,10 @@ var tns = function(options) {
         }
       })(),
       index = getStartIndex(getOption('startIndex')),
-      indexCached = index,
-      displayIndex = getCurrentSlide(),
-      indexMin = 0,
+      indexCached = index;
+      getCurrentSlide();
+      var indexMin = 0,
       indexMax = !autoWidth ? getIndexMax() : null,
-      // resize
-      resizeTimer,
       preventActionWhenRunning = options.preventActionWhenRunning,
       swipeAngle = options.swipeAngle,
       moveDirectionExpected = swipeAngle ? '?' : true,
@@ -933,6 +939,7 @@ var tns = function(options) {
       hasTouch = hasOption('touch'),
       hasMouseDrag = hasOption('mouseDrag'),
       slideActiveClass = 'tns-slide-active',
+      slideClonedClass = 'tns-slide-cloned',
       imgCompleteClass = 'tns-complete',
       imgEvents = {
         'load': onImgLoaded,
@@ -986,15 +993,13 @@ var tns = function(options) {
     var initPosition = {},
         lastPosition = {},
         translateInit,
-        disX,
-        disY,
         panStart = false,
         rafIndex,
-        getDist = horizontal ? 
+        getDist = horizontal ?
           function(a, b) { return a.x - b.x; } :
           function(a, b) { return a.y - b.y; };
   }
-  
+
   // disable slider when slidecount <= items
   if (!autoWidth) { resetVariblesWhenDisable(disable || freeze); }
 
@@ -1048,8 +1053,8 @@ var tns = function(options) {
     var absIndex = getAbsIndex(),
         result;
 
-    result = navAsThumbnails ? absIndex : 
-      fixedWidth || autoWidth ? Math.ceil((absIndex + 1) * pages / slideCount - 1) : 
+    result = navAsThumbnails ? absIndex :
+      fixedWidth || autoWidth ? Math.ceil((absIndex + 1) * pages / slideCount - 1) :
           Math.floor(absIndex / items);
 
     // set active nav to the last one when reaches the right edge
@@ -1099,6 +1104,7 @@ var tns = function(options) {
   }
 
   function getClientWidth (el) {
+    if (el == null) { return; }
     var div = doc.createElement('div'), rect, width;
     el.appendChild(div);
     rect = div.getBoundingClientRect();
@@ -1155,8 +1161,8 @@ var tns = function(options) {
   }
 
   function getSlideMarginLeft (i) {
-    return CALC ? 
-      CALC + '(' + i * 100 + '% / ' + slideCountNew + ')' : 
+    return CALC ?
+      CALC + '(' + i * 100 + '% / ' + slideCountNew + ')' :
       i * 100 / slideCountNew + '%';
   }
 
@@ -1197,8 +1203,8 @@ var tns = function(options) {
     } else {
       if (!carousel) { itemsTem = Math.floor(itemsTem); }
       var dividend = carousel ? slideCountNew : itemsTem;
-      width = CALC ? 
-        CALC + '(100% / ' + dividend + ')' : 
+      width = CALC ?
+        CALC + '(100% / ' + dividend + ')' :
         100 / dividend + '%';
     }
 
@@ -1239,8 +1245,8 @@ var tns = function(options) {
 
   function initStructure () {
     var classOuter = 'tns-outer',
-        classInner = 'tns-inner',
-        hasGutter = hasOption('gutter');
+        classInner = 'tns-inner';
+        hasOption('gutter');
 
     outerWrapper.className = classOuter;
     innerWrapper.className = classInner;
@@ -1275,7 +1281,7 @@ var tns = function(options) {
     containerParent.insertBefore(outerWrapper, container);
     innerWrapper.appendChild(container);
 
-    // add id, class, aria attributes 
+    // add id, class, aria attributes
     // before clone slides
     forEach(slideItems, function(item, i) {
       addClass(item, 'tns-item');
@@ -1291,17 +1297,19 @@ var tns = function(options) {
     // carousel: n + slides + n
     // gallery:      slides + n
     if (cloneCount) {
-      var fragmentBefore = doc.createDocumentFragment(), 
+      var fragmentBefore = doc.createDocumentFragment(),
           fragmentAfter = doc.createDocumentFragment();
 
       for (var j = cloneCount; j--;) {
         var num = j%slideCount,
             cloneFirst = slideItems[num].cloneNode(true);
+        addClass(cloneFirst, slideClonedClass);
         removeAttrs(cloneFirst, 'id');
         fragmentAfter.insertBefore(cloneFirst, fragmentAfter.firstChild);
 
         if (carousel) {
           var cloneLast = slideItems[slideCount - 1 - num].cloneNode(true);
+          addClass(cloneLast, slideClonedClass);
           removeAttrs(cloneLast, 'id');
           fragmentBefore.appendChild(cloneLast);
         }
@@ -1319,25 +1327,30 @@ var tns = function(options) {
     if (hasOption('autoHeight') || autoWidth || !horizontal) {
       var imgs = container.querySelectorAll('img');
 
-      // add complete class if all images are loaded/failed
+      // add img load event listener
       forEach(imgs, function(img) {
         var src = img.src;
-        
-        if (src && src.indexOf('data:image') < 0) {
-          addEvents(img, imgEvents);
-          img.src = '';
-          img.src = src;
-          addClass(img, 'loading');
-        } else if (!lazyload) {
-          imgLoaded(img);
+
+        if (!lazyload) {
+          // not data img
+          if (src && src.indexOf('data:image') < 0) {
+            img.src = '';
+            addEvents(img, imgEvents);
+            addClass(img, 'loading');
+
+            img.src = src;
+          // data img
+          } else {
+            imgLoaded(img);
+          }
         }
       });
 
-      // All imgs are completed
+      // set imgsComplete
       raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), function() { imgsComplete = true; }); });
 
-      // Check imgs in window only for auto height
-      if (!autoWidth && horizontal) { imgs = getImageArray(index, Math.min(index + items - 1, slideCountNew - 1)); }
+      // reset imgs for auto height: check visible imgs only
+      if (hasOption('autoHeight')) { imgs = getImageArray(index, Math.min(index + items - 1, slideCountNew - 1)); }
 
       lazyload ? initSliderTransformStyleCheck() : raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), initSliderTransformStyleCheck); });
 
@@ -1352,14 +1365,19 @@ var tns = function(options) {
   }
 
   function initSliderTransformStyleCheck () {
-    if (autoWidth) {
+    if (autoWidth && slideCount > 1) {
       // check styles application
       var num = loop ? index : slideCount - 1;
+
       (function stylesApplicationCheck() {
-        slideItems[num - 1].getBoundingClientRect().right.toFixed(2) === slideItems[num].getBoundingClientRect().left.toFixed(2) ?
-        initSliderTransformCore() :
-        setTimeout(function(){ stylesApplicationCheck(); }, 16);
+        var left = slideItems[num].getBoundingClientRect().left;
+        var right = slideItems[num - 1].getBoundingClientRect().right;
+
+        (Math.abs(left - right) <= 1) ?
+          initSliderTransformCore() :
+          setTimeout(function(){ stylesApplicationCheck(); }, 16);
       })();
+
     } else {
       initSliderTransformCore();
     }
@@ -1392,7 +1410,7 @@ var tns = function(options) {
   function initSheet () {
     // gallery:
     // set animation classes and left value for gallery slider
-    if (!carousel) { 
+    if (!carousel) {
       for (var i = index, l = index + Math.min(slideCount, items); i < l; i++) {
         var item = slideItems[i];
         item.style.left = (i - index) * 100 / items + '%';
@@ -1558,7 +1576,7 @@ var tns = function(options) {
       if (autoplayButton) {
         setAttrs(autoplayButton, {'data-action': txt});
       } else if (options.autoplayButtonOutput) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button data-action="' + txt + '">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button type="button" data-action="' + txt + '">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
         autoplayButton = outerWrapper.querySelector('[data-action]');
       }
 
@@ -1573,9 +1591,11 @@ var tns = function(options) {
         if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
       }
     }
- 
+
     // == navInit ==
     if (hasNav) {
+      // customized nav
+      // will not hide the navs in case they're thumbnails
       if (navContainer) {
         setAttrs(navContainer, {'aria-label': 'Carousel Pagination'});
         navItems = navContainer.children;
@@ -1588,13 +1608,13 @@ var tns = function(options) {
           });
         });
 
-      // generated nav 
+      // generated nav
       } else {
         var navHtml = '',
             hiddenStr = navAsThumbnails ? '' : 'style="display:none"';
         for (var i = 0; i < slideCount; i++) {
           // hide nav items by default
-          navHtml += '<button data-nav="' + i +'" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) +'"></button>';
+          navHtml += '<button type="button" data-nav="' + i +'" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) +'"></button>';
         }
         navHtml = '<div class="tns-nav" aria-label="Carousel Pagination">' + navHtml + '</div>';
         outerWrapper.insertAdjacentHTML(getInsertPosition(options.navPosition), navHtml);
@@ -1630,7 +1650,7 @@ var tns = function(options) {
     // == controlsInit ==
     if (hasControls) {
       if (!controlsContainer && (!prevButton || !nextButton)) {
-        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button data-controls="prev" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[0] + '</button><button data-controls="next" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[1] + '</button></div>');
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[0] + '</button><button type="button" data-controls="next" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[1] + '</button></div>');
 
         controlsContainer = outerWrapper.querySelector('.tns-controls');
       }
@@ -1653,7 +1673,7 @@ var tns = function(options) {
           'tabindex': '-1',
         });
       }
-      
+
       if (options.controlsContainer || (options.prevButton && options.nextButton)) {
         setAttrs(prevButton, {'data-controls' : 'prev'});
         setAttrs(nextButton, {'data-controls' : 'next'});
@@ -1747,7 +1767,7 @@ var tns = function(options) {
     tnsList.forEach(function(item, i) {
       var el = item === 'container' ? outerWrapper : options[item];
 
-      if (typeof el === 'object') {
+      if (typeof el === 'object' && el) {
         var prevEl = el.previousElementSibling ? el.previousElementSibling : false,
             parentEl = el.parentNode;
         el.outerHTML = htmlList[i];
@@ -1757,7 +1777,7 @@ var tns = function(options) {
 
 
     // reset variables
-    tnsList = animateIn = animateOut = animateDelay = animateNormal = horizontal = outerWrapper = innerWrapper = container = containerParent = containerHTML = slideItems = slideCount = breakpointZone = windowWidth = autoWidth = fixedWidth = edgePadding = gutter = viewport = items = slideBy = viewportMax = arrowKeys = speed = rewind = loop = autoHeight = sheet = lazyload = slidePositions = slideItemsOut = cloneCount = slideCountNew = hasRightDeadZone = rightBoundary = updateIndexBeforeTransform = transformAttr = transformPrefix = transformPostfix = getIndexMax = index = indexCached = indexMin = indexMax = resizeTimer = swipeAngle = moveDirectionExpected = running = onInit = events = newContainerClasses = slideId = disable = disabled = freezable = freeze = frozen = controlsEvents = navEvents = hoverEvents = visibilityEvent = docmentKeydownEvent = touchEvents = dragEvents = hasControls = hasNav = navAsThumbnails = hasAutoplay = hasTouch = hasMouseDrag = slideActiveClass = imgCompleteClass = imgEvents = imgsComplete = controls = controlsText = controlsContainer = controlsContainerHTML = prevButton = nextButton = prevIsButton = nextIsButton = nav = navContainer = navContainerHTML = navItems = pages = pagesCached = navClicked = navCurrentIndex = navCurrentIndexCached = navActiveClass = navStr = navStrCurrent = autoplay = autoplayTimeout = autoplayDirection = autoplayText = autoplayHoverPause = autoplayButton = autoplayButtonHTML = autoplayResetOnVisibility = autoplayHtmlStrings = autoplayTimer = animating = autoplayHoverPaused = autoplayUserPaused = autoplayVisibilityPaused = initPosition = lastPosition = translateInit = disX = disY = panStart = rafIndex = getDist = touch = mouseDrag = null;
+    tnsList = animateIn = animateOut = animateDelay = animateNormal = horizontal = outerWrapper = innerWrapper = container = containerParent = containerHTML = slideItems = slideCount = breakpointZone = windowWidth = autoWidth = fixedWidth = edgePadding = gutter = viewport = items = slideBy = viewportMax = arrowKeys = speed = rewind = loop = autoHeight = sheet = lazyload = slidePositions = slideItemsOut = cloneCount = slideCountNew = hasRightDeadZone = rightBoundary = updateIndexBeforeTransform = transformAttr = transformPrefix = transformPostfix = getIndexMax = index = indexCached = indexMin = indexMax = swipeAngle = moveDirectionExpected = running = onInit = events = newContainerClasses = slideId = disable = disabled = freezable = freeze = frozen = controlsEvents = navEvents = hoverEvents = visibilityEvent = docmentKeydownEvent = touchEvents = dragEvents = hasControls = hasNav = navAsThumbnails = hasAutoplay = hasTouch = hasMouseDrag = slideActiveClass = imgCompleteClass = imgEvents = imgsComplete = controls = controlsText = controlsContainer = controlsContainerHTML = prevButton = nextButton = prevIsButton = nextIsButton = nav = navContainer = navContainerHTML = navItems = pages = pagesCached = navClicked = navCurrentIndex = navCurrentIndexCached = navActiveClass = navStr = navStrCurrent = autoplay = autoplayTimeout = autoplayDirection = autoplayText = autoplayHoverPause = autoplayButton = autoplayButtonHTML = autoplayResetOnVisibility = autoplayHtmlStrings = autoplayTimer = animating = autoplayHoverPaused = autoplayUserPaused = autoplayVisibilityPaused = initPosition = lastPosition = translateInit = panStart = rafIndex = getDist = touch = mouseDrag = null;
     // check variables
     // [animateIn, animateOut, animateDelay, animateNormal, horizontal, outerWrapper, innerWrapper, container, containerParent, containerHTML, slideItems, slideCount, breakpointZone, windowWidth, autoWidth, fixedWidth, edgePadding, gutter, viewport, items, slideBy, viewportMax, arrowKeys, speed, rewind, loop, autoHeight, sheet, lazyload, slidePositions, slideItemsOut, cloneCount, slideCountNew, hasRightDeadZone, rightBoundary, updateIndexBeforeTransform, transformAttr, transformPrefix, transformPostfix, getIndexMax, index, indexCached, indexMin, indexMax, resizeTimer, swipeAngle, moveDirectionExpected, running, onInit, events, newContainerClasses, slideId, disable, disabled, freezable, freeze, frozen, controlsEvents, navEvents, hoverEvents, visibilityEvent, docmentKeydownEvent, touchEvents, dragEvents, hasControls, hasNav, navAsThumbnails, hasAutoplay, hasTouch, hasMouseDrag, slideActiveClass, imgCompleteClass, imgEvents, imgsComplete, controls, controlsText, controlsContainer, controlsContainerHTML, prevButton, nextButton, prevIsButton, nextIsButton, nav, navContainer, navContainerHTML, navItems, pages, pagesCached, navClicked, navCurrentIndex, navCurrentIndexCached, navActiveClass, navStr, navStrCurrent, autoplay, autoplayTimeout, autoplayDirection, autoplayText, autoplayHoverPause, autoplayButton, autoplayButtonHTML, autoplayResetOnVisibility, autoplayHtmlStrings, autoplayTimer, animating, autoplayHoverPaused, autoplayUserPaused, autoplayVisibilityPaused, initPosition, lastPosition, translateInit, disX, disY, panStart, rafIndex, getDist, touch, mouseDrag ].forEach(function(item) { if (item !== null) { console.log(item); } });
 
@@ -1874,7 +1894,7 @@ var tns = function(options) {
         updateIndex();
       }
     }
-    
+
     if (bpChanged) {
       if (disable !== disableTem) {
         if (disable) {
@@ -1927,9 +1947,12 @@ var tns = function(options) {
       }
     }
     if (nav !== navTem) {
-      nav ?
-        showElement(navContainer) :
+      if (nav) {
+        showElement(navContainer);
+        updateNavVisibility();
+      } else {
         hideElement(navContainer);
+      }
     }
     if (touch !== touchTem) {
       touch ?
@@ -1991,13 +2014,13 @@ var tns = function(options) {
     }
 
     indChanged = index !== indexTem;
-    if (indChanged) { 
+    if (indChanged) {
       events.emit('indexChanged', info());
       needContainerTransform = true;
     } else if (itemsChanged) {
       if (!indChanged) { additionalUpdates(); }
     } else if (fixedWidth || autoWidth) {
-      doLazyLoad(); 
+      doLazyLoad();
       updateSlideStatus();
       updateLiveRegion();
     }
@@ -2005,12 +2028,9 @@ var tns = function(options) {
     if (itemsChanged && !carousel) { updateGallerySlidePositions(); }
 
     if (!disable && !freeze) {
-      // non-meduaqueries: IE8
+      // non-mediaqueries: IE8
       if (bpChanged && !CSSMQ) {
         // middle wrapper styles
-        if (autoHeight !== autoheightTem || speed !== speedTem) {
-          update_carousel_transition_duration();
-        }
 
         // inner wrapper styles
         if (edgePadding !== edgePaddingTem || gutter !== gutterTem) {
@@ -2024,7 +2044,7 @@ var tns = function(options) {
           }
 
           // slide styles
-          var str = getSlideWidthStyle(fixedWidth, gutter, items) + 
+          var str = getSlideWidthStyle(fixedWidth, gutter, items) +
                     getSlideGutterStyle(gutter);
 
           // remove the last line and
@@ -2077,7 +2097,7 @@ var tns = function(options) {
 
   // (slideBy, indexMin, indexMax) => index
   var updateIndex = (function () {
-    return loop ? 
+    return loop ?
       carousel ?
         // loop + carousel
         function () {
@@ -2204,7 +2224,7 @@ var tns = function(options) {
     if (!horizontal || !carousel) { removeAttrs(innerWrapper, ['style']); }
 
     // gallery
-    if (!carousel) { 
+    if (!carousel) {
       for (var i = index, l = index + slideCount; i < l; i++) {
         var item = slideItems[i];
         removeAttrs(item, ['style']);
@@ -2234,7 +2254,7 @@ var tns = function(options) {
     }
 
     // gallery
-    if (!carousel) { 
+    if (!carousel) {
       for (var i = index, l = index + slideCount; i < l; i++) {
         var item = slideItems[i],
             classN = i < index + items ? animateIn : animateNormal;
@@ -2258,7 +2278,7 @@ var tns = function(options) {
     var arr = getVisibleSlideRange(),
         start = arr[0] + 1,
         end = arr[1] + 1;
-    return start === end ? start + '' : start + ' to ' + end; 
+    return start === end ? start + '' : start + ' to ' + end;
   }
 
   function getVisibleSlideRange (val) {
@@ -2332,7 +2352,10 @@ var tns = function(options) {
 
   function doLazyLoad () {
     if (lazyload && !disable) {
-      getImageArray.apply(null, getVisibleSlideRange()).forEach(function (img) {
+      var arg = getVisibleSlideRange();
+      arg.push(lazyloadSelector);
+
+      getImageArray.apply(null, arg).forEach(function (img) {
         if (!hasClass(img, imgCompleteClass)) {
           // stop propagation transitionend event to container
           var eve = {};
@@ -2373,15 +2396,17 @@ var tns = function(options) {
   }
 
   function imgCompleted (img) {
-    addClass(img, 'tns-complete');
+    addClass(img, imgCompleteClass);
     removeClass(img, 'loading');
     removeEvents(img, imgEvents);
   }
 
-  function getImageArray (start, end) {
+  function getImageArray (start, end, imgSelector) {
     var imgs = [];
+    if (!imgSelector) { imgSelector = 'img'; }
+
     while (start <= end) {
-      forEach(slideItems[start].querySelectorAll('img'), function (img) { imgs.push(img); });
+      forEach(slideItems[start].querySelectorAll(imgSelector), function (img) { imgs.push(img); });
       start++;
     }
 
@@ -2396,11 +2421,12 @@ var tns = function(options) {
   }
 
   function imgsLoadedCheck (imgs, cb) {
-    // directly execute callback function if all images are complete
+    // execute callback function if all images are complete
     if (imgsComplete) { return cb(); }
 
-    // check selected image classes otherwise
+    // check image classes
     imgs.forEach(function (img, index) {
+      if (!lazyload && img.complete) { imgCompleted(img); } // Check image.complete
       if (hasClass(img, imgCompleteClass)) { imgs.splice(index, 1); }
     });
 
@@ -2409,10 +2435,10 @@ var tns = function(options) {
 
     // otherwise execute this functiona again
     raf(function(){ imgsLoadedCheck(imgs, cb); });
-  } 
+  }
 
   function additionalUpdates () {
-    doLazyLoad(); 
+    doLazyLoad();
     updateSlideStatus();
     updateLiveRegion();
     updateControlsStatus();
@@ -2536,7 +2562,7 @@ var tns = function(options) {
           'aria-label': navStr + (navCurrentIndexCached + 1)
         });
         removeClass(navPrev, navActiveClass);
-        
+
         setAttrs(navCurrent, {'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent});
         removeAttrs(navCurrent, 'tabindex');
         addClass(navCurrent, navActiveClass);
@@ -2672,7 +2698,7 @@ var tns = function(options) {
       }
       removeClass(item, classOut);
       addClass(item, classIn);
-      
+
       if (isOut) { slideItemsOut.push(item); }
     }
   }
@@ -2685,10 +2711,10 @@ var tns = function(options) {
       function () {
         resetDuration(container, '');
         if (TRANSITIONDURATION || !speed) {
-          // for morden browsers with non-zero duration or 
+          // for morden browsers with non-zero duration or
           // zero duration for all browsers
           doContainerTransform();
-          // run fallback function manually 
+          // run fallback function manually
           // when duration is 0 / container is hidden
           if (!speed || !isVisible(container)) { onTransitionEnd(); }
 
@@ -2710,7 +2736,7 @@ var tns = function(options) {
         animateSlide(indexCached, animateIn, animateOut, true);
         animateSlide(index, animateNormal, animateIn);
 
-        // run fallback function manually 
+        // run fallback function manually
         // when transition or animation not supported / duration is 0
         if (!TRANSITIONEND || !ANIMATIONEND || !speed || !isVisible(container)) { onTransitionEnd(); }
       };
@@ -2765,7 +2791,7 @@ var tns = function(options) {
           // set item positions
           item.style.left = '';
 
-          if (ANIMATIONDELAY && TRANSITIONDELAY) { 
+          if (ANIMATIONDELAY && TRANSITIONDELAY) {
             item.style[ANIMATIONDELAY] = '';
             item.style[TRANSITIONDELAY] = '';
           }
@@ -2775,27 +2801,27 @@ var tns = function(options) {
       }
 
       /* update slides, nav, controls after checking ...
-       * => legacy browsers who don't support 'event' 
-       *    have to check event first, otherwise event.target will cause an error 
-       * => or 'gallery' mode: 
+       * => legacy browsers who don't support 'event'
+       *    have to check event first, otherwise event.target will cause an error
+       * => or 'gallery' mode:
        *   + event target is slide item
-       * => or 'carousel' mode: 
-       *   + event target is container, 
+       * => or 'carousel' mode:
+       *   + event target is container,
        *   + event.property is the same with transform attribute
        */
-      if (!event || 
-          !carousel && event.target.parentNode === container || 
+      if (!event ||
+          !carousel && event.target.parentNode === container ||
           event.target === container && strTrans(event.propertyName) === strTrans(transformAttr)) {
 
-        if (!updateIndexBeforeTransform) { 
+        if (!updateIndexBeforeTransform) {
           var indexTem = index;
           updateIndex();
-          if (index !== indexTem) { 
+          if (index !== indexTem) {
             events.emit('indexChanged', info());
 
             doContainerTransformSilent();
           }
-        } 
+        }
 
         if (nested === 'inner') { events.emit('innerLoaded', info()); }
         running = false;
@@ -2823,7 +2849,7 @@ var tns = function(options) {
         if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
       }
 
-      var absIndex = getAbsIndex(), 
+      var absIndex = getAbsIndex(),
           indexGap = 0;
 
       if (targetIndex === 'first') {
@@ -2906,7 +2932,7 @@ var tns = function(options) {
     if (running) {
       if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
     }
-    
+
     e = getEvent(e);
     var target = getTarget(e), navIndex;
 
@@ -2991,20 +3017,20 @@ var tns = function(options) {
   }
 
   function mouseoverPause () {
-    if (animating) { 
+    if (animating) {
       stopAutoplayTimer();
       autoplayHoverPaused = true;
     }
   }
 
   function mouseoutRestart () {
-    if (autoplayHoverPaused) { 
+    if (autoplayHoverPaused) {
       setAutoplayTimer();
       autoplayHoverPaused = false;
     }
   }
 
-  // keydown events on document 
+  // keydown events on document
   function onDocumentKeydown (e) {
     e = getEvent(e);
     var keyIndex = [KEYS.LEFT, KEYS.RIGHT].indexOf(e.keyCode);
@@ -3081,7 +3107,7 @@ var tns = function(options) {
     }
 
     if (autoplay && animating) { stopAutoplayTimer(); }
-    
+
     panStart = true;
     if (rafIndex) {
       caf(rafIndex);
@@ -3116,7 +3142,9 @@ var tns = function(options) {
         if (moveDirectionExpected) { preventScroll = true; }
       }
 
-      if (preventScroll) { e.preventDefault(); }
+      if ((typeof e.cancelable !== 'boolean' || e.cancelable) && preventScroll) {
+        e.preventDefault();
+      }
     }
   }
 
@@ -3173,7 +3201,7 @@ var tns = function(options) {
           addEvents(target, {'click': function preventClick (e) {
             preventDefaultBehavior(e);
             removeEvents(target, {'click': preventClick});
-          }}); 
+          }});
         }
 
         if (carousel) {
@@ -3211,7 +3239,7 @@ var tns = function(options) {
 
     // reset
     if (options.preventScrollOnTouch === 'auto') { preventScroll = false; }
-    if (swipeAngle) { moveDirectionExpected = '?'; } 
+    if (swipeAngle) { moveDirectionExpected = '?'; }
     if (autoplay && !animating) { setAutoplayTimer(); }
   }
 
@@ -3285,7 +3313,7 @@ var tns = function(options) {
   }
 
   return {
-    version: '2.9.2',
+    version: '2.9.3',
     getInfo: info,
     events: events,
     goTo: goTo,
@@ -3357,13 +3385,12 @@ window.onload = () => {
 	// calls
 	ribbon.delay(400).show();
 };
-
 if (document.querySelector('.quotes-slider')) {
 	const controlArrows = [
 		'<span class="hidden">Previous Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="35,2 13,24 35,46 " /></svg>',
 		'<span class="hidden">Next Quote</span><svg class="slider-caret" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><polyline points="13,46 35,24 13,2 "/></svg>'
 	];
-	const quotes = tns({
+	tns({
 		container: '.quotes-slider',
 		items: 1,
 		mode: 'carousel',

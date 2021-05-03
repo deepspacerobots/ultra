@@ -1,12 +1,8 @@
 {
-	"name": "deepspace-gulp",
+	"name": "big-gulp",
 	"version": "1.0.0",
 	"description": "A taskrunner for building websites.",
 	"main": "index.html",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:deepspacerobots/ultra.git"
-	},
 	"keywords": [
 		"scss",
 		"css",
@@ -20,8 +16,7 @@
 		"grid",
 		"mixins",
 		"spacing",
-		"typography",
-		"deepspace"
+		"typography"
 	],
 	"scripts": {
 		"gulp": "gulp",
@@ -30,29 +25,26 @@
 	"author": "Andrew Hale <hale.adh@gmail.com>",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.9.0",
-		"@babel/preset-env": "^7.9.5",
-		"autoprefixer": "^9.7.6",
-		"browser-sync": "^2.26.12",
+		"@babel/core": "^7.12.10",
+		"@babel/preset-env": "^7.12.11",
+		"@rollup/plugin-babel": "^5.2.3",
+		"@rollup/plugin-node-resolve": "^11.1.1",
+		"browser-sync": "^2.26.14",
 		"gulp": "^4.0.2",
-		"gulp-babel": "^8.0.0",
+		"gulp-autoprefixer": "^7.0.1",
 		"gulp-concat": "^2.6.1",
-		"gulp-file": "^0.4.0",
-		"gulp-minify": "^3.1.0",
-		"gulp-postcss": "^8.0.0",
-		"gulp-rename": "^1.4.0",
-		"gulp-sass": "^4.0.2",
-		"gulp-sass-glob": "^1.1.0",
-		"gulp-sftp-up4": "^0.1.8",
-		"gulp-sourcemaps": "^2.6.5",
-		"rollup": "^2.23.0",
-		"rollup-plugin-babel": "^4.4.0",
-		"rollup-stream": "^1.24.1",
-		"vinyl-buffer": "^1.0.1",
-		"vinyl-source-stream": "^2.0.0"
+		"gulp-cssnano": "^1.1.0",
+		"gulp-image-resize": "^0.13.1",
+		"gulp-imagemin": "^7.1.0",
+		"gulp-postcss": "^9.0.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^4.1.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-terser": "^2.0.1",
+		"imagemin-mozjpeg": "^8.0.0",
+		"rollup": "^2.38.1"
 	},
-	"homepage": "https://deepspacerobots.com",
 	"dependencies": {
-		"tiny-slider": "^2.9.2"
+		"tiny-slider": "^2.9.3"
 	}
 }
